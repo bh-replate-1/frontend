@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchPickup } from '../store/actions'
 import { addPickup } from '../store/actions'
-import EditPickUp from './EditPickUp'
 
 const blankPickUp = {
     name:'',
@@ -25,6 +24,7 @@ const PickUp = (props) => {
             [event.target.name]: value
         })
     }
+    
 
     const onSubmit = (event) => {
         event.preventDefault()
