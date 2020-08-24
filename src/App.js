@@ -1,8 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Route, Link, Switch } from 'react-router-dom'
 import {connect} from 'react-redux'
 import formSchemaIn from './formSchemaIn'
 import formSchemaUp from './formSchemaUp'
+import axios from 'axios'
+
+import yup from 'yup'
+
+import PrivateRoute from './Components/PrivateRoute'
+import Profile from './Components/Profile'
+import PickUp from './Components/PickUp'
+import EditPickUp from './Components/EditPickUp'
 
 import SignIn from './Components/SignIn'
 import SignUp from './Components/SignUp'
@@ -157,8 +165,9 @@ const App = () => {
       })
   },[formValuesUp])
 
-function App() {
+ 
   return (
+
     <Switch>
           <Route path='/signin'>
               <SignIn 
@@ -185,4 +194,5 @@ function App() {
        
   )
   }
+
 export default App

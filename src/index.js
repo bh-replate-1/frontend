@@ -7,9 +7,11 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
+
+
 import replateReducer from '../src/Store/reducers/replateReducers'
 
-const store = createStore(replateReducer, applyMiddleWare(thunk))
+const store = createStore(replateReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={store}>
