@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-<<<<<<< HEAD
-// import { fetchPickup } from '../store/actions' changed import statement due to error -H
-import {fetchPickup} from '../Store/actions/replateActions'
-// import { addPickup } from '../store/actions' changed import statement due to error -H
-import {addPickup} from '../Store/actions/replateActions'
-=======
 import { fetchPickup, addPickup } from '../Store/actions'
->>>>>>> 8d32269b4a01b049e50b133a36d48dd669322b00
 
 const blankPickUp = {
     name:'',
