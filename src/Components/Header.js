@@ -75,13 +75,13 @@ function refresh(){
 
 useEffect(() => {
     refresh()
-  },[logout])
+  },[])
  
 
 
     return(
         <StyledHeader>
-            <h1>Water<span>My</span>Plants</h1>
+            <h1>Replate<span>Your</span>Food</h1>
             <StyledFull>
                 <div className='nav-links' onClick={refresh}>
                     {/* <Link to="/">Home</Link> */}

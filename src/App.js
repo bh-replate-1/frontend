@@ -5,7 +5,7 @@ import formSchemaIn from './formSchemaIn'
 import formSchemaUp from './formSchemaUp'
 import axios from 'axios'
 
-import yup from 'yup'
+import * as yup from 'yup'
 
 import PrivateRoute from './Components/PrivateRoute'
 import Profile from './Components/Profile'

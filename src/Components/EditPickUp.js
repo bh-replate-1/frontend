@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
-import { updatePickup } from '../store/actions'
+import { updatePickup } from '../Store/actions'
 import {useParams} from 'react-router-dom'
 import axiosWithAuth from '../Utils/axiosWithAuth'
 
