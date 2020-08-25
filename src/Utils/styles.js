@@ -52,3 +52,18 @@ a {
   color:ivory;
 }
 `
+
+export const StyledFooter = styled.footer`
+background-color:#ff5e00;
+color:white;
+min-height:10vh;
+display:flex;
+justify-content:space-around;
+align-items:center;
+
+a {
+  text-decoration:none;
+  color:ivory;
+}
+
+`
