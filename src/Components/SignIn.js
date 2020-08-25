@@ -1,11 +1,7 @@
 import React from 'react'
 import { Container, Form, Button,} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-<<<<<<< HEAD
-// import './forms.css' commented out as this is not in our version of the app
-=======
 // import './forms.css'
->>>>>>> 8d32269b4a01b049e50b133a36d48dd669322b00
 
 
 function SignIn(props) {

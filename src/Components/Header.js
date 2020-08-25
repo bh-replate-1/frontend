@@ -84,10 +84,7 @@ useEffect(() => {
 
     return(
         <StyledHeader>
-<<<<<<< HEAD
-=======
             <h1>Replate<span>Your</span>Food</h1>
->>>>>>> 8d32269b4a01b049e50b133a36d48dd669322b00
             <StyledFull>
                 <div className='nav-links' onClick={refresh}>
                     {/* <Link to="/">Home</Link> */}
