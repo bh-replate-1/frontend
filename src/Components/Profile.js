@@ -6,7 +6,15 @@ import styled from 'styled-components'
 //will need to change these to props
 
 const StyledForm = styled.form`
-    display: flex
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    @media(max-width: 1600px){
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 `
 const StyledDiv = styled.div`
    display:flex;
@@ -17,13 +25,32 @@ width:30%;
 margin:20px auto;
 border:3px crimson solid;
 padding:10px;
-`
 
+    @media(max-width: 800px){
+        width: 75%;
+    }
+`
+const StyledLabel = styled.label`
+    display: flex;
+    flex-direction: column;
+
+    @media(max-width: 800px){
+        width: 75%;
+    }
+`
 const ButtonDiv = styled.div`
     display: flex;
     flex-direction: column
-`
 
+    
+`
+const StyledInputs = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+
+`
 const mockProfileData = {
     email: 'hernandezm.dev@gmail.com',
     business: 'Mikes food',
@@ -59,8 +86,8 @@ const Profile = (props) => {
     return (
         <StyledDiv>
             <StyledForm onClick={submit} type='submit'>
-            <div>
-                <label>email:
+            <StyledInputs>
+                <StyledLabel>email:
                     <StyledInput
                         // id=''
                         name='email'
@@ -69,8 +96,8 @@ const Profile = (props) => {
                         value={form.email}
                         disabled={disabled}
                     />
-                </label>
-                <label>Business Name:
+                </StyledLabel>
+                <StyledLabel>Business Name:
                     <StyledInput
                         // id=''
                         name='business'
@@ -79,8 +106,8 @@ const Profile = (props) => {
                         value={form.business}
                         disabled={disabled}
                     />
-                </label>
-                <label>Address:
+                </StyledLabel>
+                <StyledLabel>Address:
                     <StyledInput
                         // id=''
                         name='address'
@@ -89,8 +116,8 @@ const Profile = (props) => {
                         value={form.address}
                         disabled={disabled}
                     />
-                </label>
-                <label>Phone Number:
+                </StyledLabel>
+                <StyledLabel>Phone Number:
                     <StyledInput
                         // id=''
                         name='phone'
@@ -99,8 +126,8 @@ const Profile = (props) => {
                         value={form.phone}
                         disabled={disabled}
                     />
-                </label>
-                </div>
+                </StyledLabel>
+                </StyledInputs>
                 <ButtonDiv>
                     <StyledButton onClick={disableChange}>Edit</StyledButton>
                     <StyledButton>Submit</StyledButton>
