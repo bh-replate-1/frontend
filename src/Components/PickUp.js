@@ -3,14 +3,20 @@ import { connect } from 'react-redux'
 import { fetchPickup, addPickup } from '../Store/actions'
 
 const blankPickUp = {
-    name:'',
-    company:'',
-	quantity: '',
-    use_by_date: '',
     food_item: '',
+    use_by_date: '',
+	quantity: 0,
 	refrigerate: true,
 	completed: false
 }
+
+// "id": 2,
+// "food_item": "Lasagna",
+// "quantity": 1,
+// "use_by_date": "8/30/20",
+// "refrigerate": null,
+// "completed": null,
+// "user_id": 1
 
 
 const PickUp = (props) => {
@@ -42,9 +48,7 @@ const PickUp = (props) => {
             <div>{props.pickup.map((item) => {
                 return <div>
                     <h3>Pick Up:</h3>
-                    <p>Name: {props.name}</p>
-                    <p>Company: {props.company}</p>
-                    <p>Food: {props.food.food_item}</p>
+                    <p>Food Item: {props.food.food_item}</p>
                     <p>Quantity: {props.food.quantity}</p>
                     <p>Expiration: {props.food.use_by_date}</p>
                     <div>{props.food.refrigerate ? (<p>Refridgeration Required</p>) : null}</div>
@@ -56,22 +60,6 @@ const PickUp = (props) => {
             <div>
                 Add a PickUp
                 <form onSubmit={onSubmit}>
-                    <div>Name:
-                        <input
-                        type="text"
-                        name="name"
-                        value={newPickUp.name}
-                        onChange={onChange}
-                        />
-                    </div>
-                    <div>Company:
-                        <input
-                        type="text"
-                        name="company"
-                        value={newPickUp.company}
-                        onChange={onChange}
-                        />
-                    </div>
                     <div>Food Item:
                         <input
                         type="text"
