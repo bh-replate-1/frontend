@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { fetchProfile, updateProfile } from '../Store/actions/replateActions'
 import { connect } from 'react-redux'
-import { StyledButton, StyledInput, CenterDiv } from '../Utils/styles'
+import { StyledButton, StyledInput, } from '../Utils/styles'
 import styled from 'styled-components'
 //will need to change these to props
 
