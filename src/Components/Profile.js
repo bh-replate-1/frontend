@@ -1,8 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import { fetchProfile, updateProfile } from '../Store/actions/replateActions'
 import { connect } from 'react-redux'
-
+import { StyledButton, StyledInput, } from '../Utils/styles'
+import styled from 'styled-components'
 //will need to change these to props
+
+const StyledForm = styled.form`
+    display: flex
+`
+const StyledDiv = styled.div`
+   display:flex;
+/* justify-content:center; */
+/* align-items:center; */
+background-color:mistyrose;
+width:30%;
+margin:20px auto;
+border:3px crimson solid;
+padding:10px;
+`
+
+const ButtonDiv = styled.div`
+    display: flex;
+    flex-direction: column
+`
+
 const mockProfileData = {
     email: 'hernandezm.dev@gmail.com',
     business: 'Mikes food',
@@ -36,10 +57,11 @@ const Profile = (props) => {
         updateProfile(form)
     }
     return (
-        <div>
-            <form onClick={submit} type='submit'>
+        <StyledDiv>
+            <StyledForm onClick={submit} type='submit'>
+            <div>
                 <label>email:
-                    <input
+                    <StyledInput
                         // id=''
                         name='email'
                         type='email'
@@ -49,7 +71,7 @@ const Profile = (props) => {
                     />
                 </label>
                 <label>Business Name:
-                    <input
+                    <StyledInput
                         // id=''
                         name='business'
                         type='text'
@@ -59,7 +81,7 @@ const Profile = (props) => {
                     />
                 </label>
                 <label>Address:
-                    <input
+                    <StyledInput
                         // id=''
                         name='address'
                         type='text'
@@ -69,7 +91,7 @@ const Profile = (props) => {
                     />
                 </label>
                 <label>Phone Number:
-                    <input
+                    <StyledInput
                         // id=''
                         name='phone'
                         type='text'
@@ -78,10 +100,14 @@ const Profile = (props) => {
                         disabled={disabled}
                     />
                 </label>
-                <button onClick={disableChange}>Edit</button>
-                <button>Submit</button>
-            </form>
-        </div>
+                </div>
+                <ButtonDiv>
+                    <StyledButton onClick={disableChange}>Edit</StyledButton>
+                    <StyledButton>Submit</StyledButton>
+                </ButtonDiv>
+               
+            </StyledForm>
+        </StyledDiv>
     )
 }
 //disabled the state import until we have the proper data
@@ -97,4 +123,4 @@ const Profile = (props) => {
 // }
 
 // export default connect(mapStateToProps, { updateProfile },{ fetchProfile })(Profile);
-export default(Profile)
+export default (Profile)
