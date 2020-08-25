@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Form, Button,} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import './forms.css'
+// import './forms.css'
 
 
 function SignIn(props) {

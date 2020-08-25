@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchPickup } from '../store/actions'
-import { addPickup } from '../store/actions'
+import { fetchPickup, addPickup } from '../Store/actions'
 
 const blankPickUp = {
     name:'',
