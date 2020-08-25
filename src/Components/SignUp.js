@@ -8,7 +8,6 @@ function SignUp(props) {
     const {valuesUp, errorsUp, inputChangeUp, submitUp, disabledUp} = props
 
     const onSubmit = (evt) => {
-        debugger
         evt.preventDefault()
         submitUp()
     }
