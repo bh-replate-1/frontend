@@ -6,7 +6,7 @@ const axiosWithAuth = () => {
 
     return axios.create({
 
-        baseURL: 'http://localhost:5000',
+        baseURL: 'https://bh-replate-1.herokuapp.com',
         headers: {
             Authorization: `${token}`
         }

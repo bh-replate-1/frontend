@@ -5,7 +5,7 @@ import formSchemaIn from './formSchemaIn'
 import formSchemaUp from './formSchemaUp'
 import axios from 'axios'
 
-import yup from 'yup'
+import * as yup from 'yup' //rewrote import error was breaking app.
 
 import PrivateRoute from './Components/PrivateRoute'
 import Profile from './Components/Profile'
@@ -15,7 +15,7 @@ import SelectedPickups from './Components/SelectedPickups'
 
 import SignIn from './Components/SignIn'
 import SignUp from './Components/SignUp'
-import Home from './Home'
+// import Home from './Home'
 import Header from './Components/Header'
 
 
@@ -172,7 +172,8 @@ const App = () => {
         <div>
             <Header />
             <Switch>
-                <PrivateRoute exact path='/private/user' component={Profile}/>
+            {/* changed to route until we have endpoints */}
+                <Route exact path='/user' component={Profile}/> 
                 <PrivateRoute exact path='/private/pickup'>
                     <PickUp/>
                     <SelectedPickups/>
@@ -196,9 +197,9 @@ const App = () => {
                         disabled={disabledUp}
                     />
                 </Route>
-                <Route path='/'>
+                {/* <Route path='/'>
                     <Home />
-                </Route>
+                </Route> */}
             </Switch>
         </div>
 

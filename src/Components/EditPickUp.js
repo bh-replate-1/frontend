@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
-import { updatePickup } from '../store/actions'
+// import { updatePickup } from '../store/actions' changed import as this one was erroring out. -H
+import {updatePickup} from '../Store/actions/replateActions'
 import {useParams} from 'react-router-dom'
 import axiosWithAuth from '../Utils/axiosWithAuth'
 

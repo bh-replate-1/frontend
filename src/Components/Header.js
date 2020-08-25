@@ -67,7 +67,7 @@ export default function Header(props){
 
 const history = useHistory()
 const [currentURL, setCurrentURL] = useState('history.location.pathname')
-const [prevURL, setPrevURL] = useState('')
+// const [prevURL, setPrevURL] = useState('')
 
 function refresh(){
     setCurrentURL(history.location.pathname)
@@ -75,13 +75,15 @@ function refresh(){
 
 useEffect(() => {
     refresh()
-  },[logout])
+  },[])
  
-
+  const logoutUser = () => {
+    localStorage.clear();
+    history.push('/signin');
+  }
 
     return(
         <StyledHeader>
-            <h1>Water<span>My</span>Plants</h1>
             <StyledFull>
                 <div className='nav-links' onClick={refresh}>
                     {/* <Link to="/">Home</Link> */}
@@ -107,7 +109,7 @@ useEffect(() => {
                         <Link to ='/signin'>Sign In</Link>
                     }
                 </div>
-                {/* <button onClick={() => logout()}>Logout</button> */}
+                <button onClick={() => logoutUser()}>Logout</button>
                 {/* <Link onClick={() => logout()}>Logout</Link> */}
 
             </StyledFull>
