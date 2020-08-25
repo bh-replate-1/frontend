@@ -24,7 +24,7 @@ function SignIn(props) {
   return (
         <>
         <Container>
-          <Form className="signin-form">
+          <Form className="signin-form" onSubmit={onSubmit}>
        
                 <Form.Group>
                        <h2>SIGN IN</h2>
@@ -55,7 +55,7 @@ function SignIn(props) {
                     ></Form.Control>
                 </Form.Group>
                         <br/>
-              <Button onSubmit={onSubmit} disabled={disabled} variant="primary" type="submit">Log In</Button>
+              <Button  disabled={disabled} variant="primary" type="submit">Log In</Button>
                         <br/>
               <Link to="/signup">Need an account?</Link>
 

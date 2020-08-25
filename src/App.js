@@ -68,7 +68,6 @@ const App = () => {
     const history = useHistory()
 
     const postNewSignIn = newSignIn => {
-        debugger
         axiosWithAuth()
             .post('/api/auth/login', newSignIn)
             .then((res) => {
@@ -86,7 +85,6 @@ const App = () => {
     }
 
     const postNewSignUp = newSignUp => {
-        debugger
         axiosWithAuth().post('/api/auth/register', newSignUp)
             .then((res) => {
                 setSignUPForm(res.data)
@@ -156,7 +154,6 @@ const App = () => {
     }
 
     const submitUp = () => {
-        debugger
         const newSignUp = {
             email: formValuesUp.email.trim(),
             phone: formValuesUp.phone.trim(),
