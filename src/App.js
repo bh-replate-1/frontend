@@ -12,7 +12,8 @@ import Profile from './Components/Profile'
 import PickUp from './Components/PickUp'
 import EditPickUp from './Components/EditPickUp'
 import SelectedPickups from './Components/SelectedPickups'
-import {Details} from '../src/Utils/styles'
+
+import { StyledFooter } from '../src/Utils/styles'
 
 import SignIn from './Components/SignIn'
 import SignUp from './Components/SignUp'
@@ -182,7 +183,7 @@ const App = () => {
 
     return (
         <div>
-            <Details />
+           
             <Header />
             <Switch>
                 {/* changed to route until we have endpoints/ must also change path back to /private/user*/}
@@ -214,6 +215,7 @@ const App = () => {
                     <Home />
                 </Route> */}
             </Switch>
+            <StyledFooter></StyledFooter>
         </div>
 
     )

@@ -1,8 +1,13 @@
 import React, { useEffect, useState} from 'react';
 import { Link, useHistory} from 'react-router-dom'
 import styled from 'styled-components'
+import replatelogo from '../replatelogo.png'
+
+import { Details } from '../Utils/styles'
 
 const StyledHeader = styled.header`
+
+    
     div{
         display: flex;
         justify-content:center;
@@ -11,35 +16,28 @@ align-items:center;
     }
     h1{
         font-size: 7rem;
-        padding-bottom: 2%;
-        padding-top: 2%;
+        padding-bottom: 1%;
+        padding-top: 1%;
     }
     span{
         color: #ff5e00;
     }
 `
 
-const TestDiv = styled.div`
- display: flex;
- justify-content:center;
-align-items:center;
-color:ivory;
-font-family: 'Heebo', sans-serif;
-background-color:#ff5e00;
-border:none;
-padding:15px;
-margin:20px auto;
-width:200px;
+const ImageBorder = styled.img`
+border-left:2px solid white;
+border-right:2px solid white;
 `
 
-export const StyledButton = styled.button`
-color:ivory;
+const StyledButton = styled.button`
+/* color:#ff5e00; */
+color: white;
 font-family: 'Heebo', sans-serif;
 background-color:#ff5e00;
-border:none;
-padding:15px;
-margin:20px auto;
-width:200px;
+border:2px solid white;
+padding:10px;
+margin:10px auto;
+width:100px;
 `
 
 const StyledFull = styled.div`
@@ -115,6 +113,13 @@ useEffect(() => {
 
 
     return(
+        <div>
+             <Details>
+             <StyledButton onClick={() => logoutUser()}>Home</StyledButton>
+             <ImageBorder src={replatelogo}></ImageBorder>
+             <StyledButton onClick={() => logoutUser()}>Logout</StyledButton>
+             </Details>
+   
         <StyledHeader>
             <div>
             <h1>Replate <span>Your </span>Food</h1>
@@ -151,13 +156,10 @@ useEffect(() => {
                 </div>
                 {/* <Link onClick={() => logout()}>Logout</Link> */}
                 </StyledFull>
-                <div>
-                <StyledButton onClick={() => logoutUser()}>Logout</StyledButton>
-                </div>
             
            
         </StyledHeader>
-        
+        </div>
     )
 }
 
