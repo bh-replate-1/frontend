@@ -13,6 +13,7 @@ function SignIn(props) {
           disabled} = props
 
   const onSubmit = (evt) => {
+    debugger
     evt.preventDefault();
     submitIn()
   }
@@ -27,15 +28,15 @@ function SignIn(props) {
        
                 <Form.Group>
                        <h2>SIGN IN</h2>
-                    <div>{errorsIn.username}</div>
+                    <div>{errorsIn.email}</div>
                     <div>{errorsIn.password}</div>
-                  <Form.Label>Username:</Form.Label>
+                  <Form.Label>E-Mail:</Form.Label>
                        <br/>
                     <Form.Control
                         type="input"
-                        value={valuesIn.username}
-                        name="username"
-                        placeholder="username"
+                        value={valuesIn.email}
+                        name="email"
+                        placeholder="email"
                         onChange={onInputChange}
                     ></Form.Control>
                 </Form.Group>
