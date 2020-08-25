@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Link, Switch, useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import formSchemaIn from './formSchemaIn'
 import formSchemaUp from './formSchemaUp'
-import axios from 'axios'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import * as yup from 'yup'
 
@@ -20,27 +20,29 @@ import Header from './Components/Header'
 
 
 import './App.css';
+import axiosWithAuth from './Utils/axiosWithAuth';
+import PickupCard from './Components/PickupCard';
 
 const initialSignInFormValues = {
-    username: '',
+    email: '',
     password: '',
 }
 
 const initialSignUpFormValues = {
-    username: '',
-    phoneNumber: '',
+    email: '',
+    phone: '',
     password: '',
 
 }
 
 const initialSignInErrors = {
-    username: '',
+    email: '',
     password: '',
 }
 
 const intitialSignUpErrors = {
-    username: '',
-    phoneNumber: '',
+    email: '',
+    phone: '',
     password: '',
 }
 
@@ -63,12 +65,16 @@ const App = () => {
     const [disabledIn, SetDisabledIn] = useState(initialDisabled)
     const [disabledUp, SetDisabledUp] = useState(initialDisabled)
 
+    const history = useHistory()
 
     const postNewSignIn = newSignIn => {
-        axios
-            .post("https://reqres.in/api/users", newSignIn)
+        axiosWithAuth()
+            .post('/api/auth/login', newSignIn)
             .then((res) => {
-                setSignInForm([res.data, ...signInForm])
+                console.log('test')
+                setSignInForm(res.data)
+                history.push('/private/pickup')
+                localStorage.setItem(res.data.payload)
             })
             .catch((err) => {
                 console.log(err)
@@ -79,9 +85,9 @@ const App = () => {
     }
 
     const postNewSignUp = newSignUp => {
-        axios.post("https://reqres.in/api/users", newSignUp)
+        axiosWithAuth().post('/api/auth/register', newSignUp)
             .then((res) => {
-                setSignUPForm([res.data, ...signUpForm])
+                setSignUPForm(res.data)
             })
             .catch((err) => {
                 console.log(err)
@@ -141,7 +147,7 @@ const App = () => {
 
     const submitIn = () => {
         const newSignIn = {
-            username: formValuesIn.username,
+            email: formValuesIn.email,
             password: formValuesIn.password
         }
         postNewSignIn(newSignIn)
@@ -149,8 +155,8 @@ const App = () => {
 
     const submitUp = () => {
         const newSignUp = {
-            username: formValuesUp.username.trim(),
-            phoneNumber: formValuesUp.phoneNumber.trim(),
+            email: formValuesUp.email.trim(),
+            phone: formValuesUp.phone.trim(),
             password: formValuesUp.password,
         }
         postNewSignUp(newSignUp)
@@ -172,13 +178,13 @@ const App = () => {
         <div>
             <Header />
             <Switch>
-            {/* changed to route until we have endpoints/ must also change path back to /private/user*/}
-                <Route exact path='/user' component={Profile}/> 
+                {/* changed to route until we have endpoints/ must also change path back to /private/user*/}
+                <Route exact path='/user' component={Profile} />
                 <PrivateRoute exact path='/private/pickup'>
-                    <PickUp/>
-                    <SelectedPickups/>
+                    <PickUp />
+                    <SelectedPickups />
                 </PrivateRoute>
-                <PrivateRoute exact path='/private/edit' component={EditPickUp}/>
+                <PrivateRoute exact path='/private/edit' component={EditPickUp} />
                 <Route path='/signin'>
                     <SignIn
                         valuesIn={formValuesIn}

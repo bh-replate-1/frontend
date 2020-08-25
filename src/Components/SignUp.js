@@ -8,7 +8,8 @@ function SignUp(props) {
     const {valuesUp, errorsUp, inputChangeUp, submitUp, disabledUp} = props
 
     const onSubmit = (evt) => {
-        evt.preventDefualt()
+        debugger
+        evt.preventDefault()
         submitUp()
     }
 
@@ -19,19 +20,19 @@ function SignUp(props) {
     return (
         <>
     <Container>
-         <Form className='signup-form'>
+         <Form className='signup-form' onSubmit={onSubmit}>
             <Form.Group>
                     <h2 className='text-center'>SIGN UP</h2>
-                    <div>{errorsUp.username}</div>
-                    <div>{errorsUp.phoneNumber}</div>
+                    <div>{errorsUp.email}</div>
+                    <div>{errorsUp.phone}</div>
                     <div>{errorsUp.password}</div>
-            <Form.Label>Username:</Form.Label>
+            <Form.Label>email:</Form.Label>
                     <br/>
                 <Form.Control
                     type="input"
-                    value={valuesUp.username}
-                    name="username"
-                    placeholder="username"
+                    value={valuesUp.email}
+                    name="email"
+                    placeholder="email"
                     onChange={onInputChange}
                 />
             </Form.Group>
@@ -41,9 +42,9 @@ function SignUp(props) {
                     <br/>
                 <Form.Control
                 type="number"
-                value={valuesUp.phoneNumber}
+                value={valuesUp.phone}
                 placeholder="15556781234"
-                name="phoneNumber"
+                name="phone"
                 onChange={onInputChange}
                 />
             </Form.Group>
@@ -64,7 +65,7 @@ function SignUp(props) {
             </Form.Group>
                 <br/>
 
-            <Button onSubmit={onSubmit} disabled={disabledUp} type="submit">Submit</Button>
+            <Button disabled={disabledUp} type="submit">Submit</Button>
                 <br/>
             <Link to='/signin'>Already have an acccount?</Link>
         </Form>

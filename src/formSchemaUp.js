@@ -1,12 +1,12 @@
 import * as yup from 'yup'
 
 const formSchemaUp = yup.object().shape({
-    username: yup
+    email: yup
     .string()
-    .min(5, "Username must be at least 5 characters long.")
+    .min(5, "email must be at least 5 characters long.")
     .max(8, "User name should only be 8 characters long.")
     .required("Usename is required when Singing up."),
-    phoneNumber: yup
+    phone: yup
     .string()
     .required("Phone Number is required to Sign up."),
     password: yup
