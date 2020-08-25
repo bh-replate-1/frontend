@@ -1,10 +1,27 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import { Container, Form, Button,} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-// import './forms.css'
+import styled from 'styled-components'
+import {StyledButton, CenterDiv} from '../Utils/styles'
+import {TweenMax, Power3} from 'gsap'
+
 
 
 function SignIn(props) {
+  let signinForm = useRef(null)
+
+  useEffect(() => {
+    TweenMax.to(
+      signinForm,
+      .8,
+      {
+        opacity: 1,
+        y: -30,
+        ease: Power3.easeOut
+      }
+    )
+  
+  }, [])
 
   const { valuesIn,
           errorsIn,
@@ -23,8 +40,9 @@ function SignIn(props) {
   }
   return (
         <>
+        <CenterDiv>
         <Container>
-          <Form className="signin-form" onSubmit={onSubmit}>
+          <Form className="signin-form" onSubmit={onSubmit} ref={el => {signinForm = el}}>
        
                 <Form.Group>
                        <h2>SIGN IN</h2>
@@ -55,12 +73,13 @@ function SignIn(props) {
                     ></Form.Control>
                 </Form.Group>
                         <br/>
-              <Button  disabled={disabled} variant="primary" type="submit">Log In</Button>
+              <StyledButton  disabled={disabled} variant="primary" type="submit">Log In</StyledButton>
                         <br/>
               <Link to="/signup">Need an account?</Link>
 
             </Form>
           </Container>
+          </CenterDiv>
         </>
   );
 }

@@ -1,11 +1,32 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import { Container, Form, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-// import './forms.css'
+import styled from 'styled-components'
+import {StyledButton, CenterDiv} from '../Utils/styles'
+import {TweenMax, Power3} from 'gsap'
+
 
 function SignUp(props) {
+    let signUpForm = useRef(null)
 
-    const {valuesUp, errorsUp, inputChangeUp, submitUp, disabledUp} = props
+    useEffect(() => {
+      TweenMax.to(
+        signUpForm,
+        .8,
+        {
+          opacity: 1,
+          y: -30,
+          ease: Power3.easeOut
+        }
+      )
+    
+    }, [])
+
+    const {valuesUp, 
+           errorsUp, 
+           inputChangeUp, 
+           submitUp, 
+           disabledUp} = props
 
     const onSubmit = (evt) => {
         debugger
@@ -19,14 +40,15 @@ function SignUp(props) {
     }
     return (
         <>
-    <Container>
-         <Form className='signup-form' onSubmit={onSubmit}>
+        <CenterDiv>
+        <Container>
+         <Form className='signup-form' onSubmit={onSubmit} ref={el => {signUpForm = el}}>
             <Form.Group>
                     <h2 className='text-center'>SIGN UP</h2>
                     <div>{errorsUp.email}</div>
                     <div>{errorsUp.phone}</div>
                     <div>{errorsUp.password}</div>
-            <Form.Label>email:</Form.Label>
+            <Form.Label>Email:</Form.Label>
                     <br/>
                 <Form.Control
                     type="input"
@@ -41,7 +63,7 @@ function SignUp(props) {
             <Form.Label>Phone Number:</Form.Label>
                     <br/>
                 <Form.Control
-                type="number"
+                type="text"
                 value={valuesUp.phone}
                 placeholder="15556781234"
                 name="phone"
@@ -65,11 +87,13 @@ function SignUp(props) {
             </Form.Group>
                 <br/>
 
-            <Button disabled={disabledUp} type="submit">Submit</Button>
+            <StyledButton disabled={disabledUp} type="submit">Submit</StyledButton>
                 <br/>
             <Link to='/signin'>Already have an acccount?</Link>
         </Form>
     </Container>
+    </CenterDiv>
+     
         </>
     )
 }

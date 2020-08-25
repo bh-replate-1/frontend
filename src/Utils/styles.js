@@ -9,10 +9,10 @@ margin:20px auto;
 width:200px;
 `
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
 width:190px;`
 
-const CenterDiv = styled.div`
+ export const CenterDiv = styled.div`
 display:flex;
 justify-content:center;
 align-items:center;
@@ -23,11 +23,11 @@ border:3px crimson solid;
 padding:10px;
 `
 
-const RedSpan = styled.span`
+export const RedSpan = styled.span`
 color: red;
 `
 
-const Details = styled.header`
+ export const Details = styled.header`
 
 background-color:crimson;
 color:white;
