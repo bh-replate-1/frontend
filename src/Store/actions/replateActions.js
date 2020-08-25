@@ -21,7 +21,7 @@ export const UPDATE_PICKUP = 'UPDATE_PICKUP'
 export const fetchProfile = () => (dispatch) => {
     dispatch({type: FETCHING_PROFILE_START})
     axiosWithAuth()
-    .get('/profile/')
+    .get('/api/users/')
     .then( res => {
         console.log(res, 'res in fetchprofile')
         dispatch({type: FETCHING_PROFILE_SUCCESS, payload: res.data})
@@ -34,7 +34,7 @@ export const fetchProfile = () => (dispatch) => {
 export const addProfile = (value) => (dispatch) => {
     dispatch({type: ADDING_PROFILE})
     axiosWithAuth()
-    .post('/profile/', value)
+    .post('/api/users/', value)
     .then (res => {
         console.log (res, 'res in add profile')
         dispatch({type: ADDING_PROFILE, payload: res.data})
@@ -47,7 +47,7 @@ export const addProfile = (value) => (dispatch) => {
 export const updateProfile = (changes) => (dispatch) => {
     dispatch({type: UPDATE_PROFILE})
     axiosWithAuth()
-    .put('/profile/', changes )
+    .put('/api/users/', changes )
     .then (res => {
         console.log(res, 'res in update profile')
         dispatch({type: UPDATE_PROFILE, payload: res.data})
@@ -62,7 +62,7 @@ export const updateProfile = (changes) => (dispatch) => {
 export const fetchPickup = () => (dispatch) => {
     dispatch({type: FETCHING_PICKUP_START})
     axiosWithAuth()
-    .get('/pickup/')
+    .get('/api/food/')
     .then( res => {
         console.log(res, 'res in fetchPickup')
         dispatch({type: FETCHING_PICKUP_SUCCESS, payload: res.data})
@@ -75,7 +75,7 @@ export const fetchPickup = () => (dispatch) => {
 export const addPickup = (value) => (dispatch) => {
     dispatch({type: ADDING_PICKUP})
     axiosWithAuth()
-    .post('/pickup/', value)
+    .post('/api/food/', value)
     .then (res => {
         console.log (res, 'res in add Pickup')
         dispatch({type: ADDING_PICKUP, payload: res.data})
@@ -88,7 +88,7 @@ export const addPickup = (value) => (dispatch) => {
 export const updatePickup = (changes) => (dispatch) => {
     dispatch({type: UPDATE_PICKUP})
     axiosWithAuth()
-    .put('/pickup', changes )
+    .put('/api/food/', changes )
     .then (res => {
         console.log(res, 'res in update Pickup')
         dispatch({type: UPDATE_PICKUP, payload: res.data})
