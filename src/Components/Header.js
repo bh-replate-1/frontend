@@ -5,31 +5,63 @@ import styled from 'styled-components'
 const StyledHeader = styled.header`
     div{
         display: flex;
+        justify-content:center;
+align-items:center;
         /* justify-content: space-between; */
     }
     h1{
-        font-size: 8rem;
+        font-size: 7rem;
         padding-bottom: 2%;
         padding-top: 2%;
     }
     span{
-        color: deepskyblue;
+        color: #ff5e00;
     }
 `
+
+const TestDiv = styled.div`
+ display: flex;
+ justify-content:center;
+align-items:center;
+color:ivory;
+font-family: 'Heebo', sans-serif;
+background-color:#ff5e00;
+border:none;
+padding:15px;
+margin:20px auto;
+width:200px;
+`
+
+export const StyledButton = styled.button`
+color:ivory;
+font-family: 'Heebo', sans-serif;
+background-color:#ff5e00;
+border:none;
+padding:15px;
+margin:20px auto;
+width:200px;
+`
+
 const StyledFull = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
+align-items:center;
     height: 35%;
     margin: 1% 5% 1% 5%;
+    color:ivory;
 
     div {
         height: 100%;
         width: 25%;
     }
     a {
+        display:flex;
+        align-items:center;
+        text-align:center;
+        justify-content:center;
         text-decoration: none;
-        background-color: rgba(	0, 191, 255, .9); 
-        color: #333333;
+        background-color: #ff5e00; 
+        color: ivory;
         padding: 2px 6px 2px 6px;
         border-top: 1px solid #CCCCCC;
         border-right: 1px solid #333333;
@@ -84,7 +116,9 @@ useEffect(() => {
 
     return(
         <StyledHeader>
-            <h1>Replate<span>Your</span>Food</h1>
+            <div>
+            <h1>Replate <span>Your </span>Food</h1>
+            </div>
             <StyledFull>
                 <div className='nav-links' onClick={refresh}>
                     {/* <Link to="/">Home</Link> */}
@@ -113,11 +147,14 @@ useEffect(() => {
                         // <Link to ='/signin'>Sign In</Link>
                         <Link to ='/signin'>Sign In</Link>
                     }
-                     <button onClick={() => logoutUser()}>Logout</button>
+                     
                 </div>
                 {/* <Link onClick={() => logout()}>Logout</Link> */}
-
-            </StyledFull>
+                </StyledFull>
+                <div>
+                <StyledButton onClick={() => logoutUser()}>Logout</StyledButton>
+                </div>
+            
            
         </StyledHeader>
         
