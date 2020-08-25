@@ -5,7 +5,11 @@ import formSchemaIn from './formSchemaIn'
 import formSchemaUp from './formSchemaUp'
 import axios from 'axios'
 
+<<<<<<< HEAD
 import * as yup from 'yup' //rewrote import error was breaking app.
+=======
+import * as yup from 'yup'
+>>>>>>> 8d32269b4a01b049e50b133a36d48dd669322b00
 
 import PrivateRoute from './Components/PrivateRoute'
 import Profile from './Components/Profile'
