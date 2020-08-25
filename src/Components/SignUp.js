@@ -29,7 +29,6 @@ function SignUp(props) {
            disabledUp} = props
 
     const onSubmit = (evt) => {
-        debugger
         evt.preventDefault()
         submitUp()
     }

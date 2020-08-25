@@ -15,7 +15,7 @@ const Profile = (props) => {
 
     useEffect(() => {
         fetchProfile()
-    }, [])
+    }, [setForm])
 
     const inputChange = e => {
         const { name, value } = e.target;
@@ -37,7 +37,7 @@ const Profile = (props) => {
     }
     return (
         <div>
-            <form >
+            <form onClick={submit} type='submit'>
                 <label>email:
                     <input
                         // id=''
@@ -84,16 +84,17 @@ const Profile = (props) => {
         </div>
     )
 }
+//disabled the state import until we have the proper data
+// const mapStateToProps = (state) => {
+//     return {
+//         profile: {
+//             email: state.profile.email,
+//             business: state.profile.business,
+//             address: state.profile.address,
+//             phone: state.profile.phone,
+//         }
+//     }
+// }
 
-const mapStateToProps = (state) => {
-    return {
-        profile: {
-            email: state.profile.email,
-            business: state.profile.business,
-            address: state.profile.address,
-            phone: state.profile.phone,
-        }
-    }
-}
-
-export default connect(mapStateToProps, { updateProfile },{ fetchProfile })(Profile);
+// export default connect(mapStateToProps, { updateProfile },{ fetchProfile })(Profile);
+export default(Profile)

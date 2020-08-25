@@ -30,7 +30,6 @@ function SignIn(props) {
           disabled} = props
 
   const onSubmit = (evt) => {
-    debugger
     evt.preventDefault();
     submitIn()
   }

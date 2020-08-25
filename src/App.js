@@ -71,10 +71,12 @@ const App = () => {
         axiosWithAuth()
             .post('/api/auth/login', newSignIn)
             .then((res) => {
+                console.log(res.data.token)
                 console.log('test')
-                setSignInForm(res.data)
+                localStorage.setItem('token', res.data.token)
+                setSignInForm(initialSignUp)
                 history.push('/private/pickup')
-                localStorage.setItem(res.data.payload)
+                
             })
             .catch((err) => {
                 console.log(err)
@@ -87,7 +89,10 @@ const App = () => {
     const postNewSignUp = newSignUp => {
         axiosWithAuth().post('/api/auth/register', newSignUp)
             .then((res) => {
+                console.log(res.data.token)
                 setSignUPForm(res.data)
+                localStorage.setItem('token', res.data.token)
+                history.push('/signin')
             })
             .catch((err) => {
                 console.log(err)
@@ -179,10 +184,10 @@ const App = () => {
             <Header />
             <Switch>
                 {/* changed to route until we have endpoints/ must also change path back to /private/user*/}
-                <Route exact path='/user' component={Profile} />
+                <PrivateRoute exact path='/private/user' component={Profile} />
                 <PrivateRoute exact path='/private/pickup'>
                     <PickUp />
-                    <SelectedPickups />
+                    {/* <SelectedPickups /> */}
                 </PrivateRoute>
                 <PrivateRoute exact path='/private/edit' component={EditPickUp} />
                 <Route path='/signin'>
