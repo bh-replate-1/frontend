@@ -66,21 +66,21 @@ export default function Header(props){
 // const {logout} = props
 
 const history = useHistory()
+const [change, setChange] = useState(true)
 const [currentURL, setCurrentURL] = useState('history.location.pathname')
-// const [prevURL, setPrevURL] = useState('')
 
 function refresh(){
     setCurrentURL(history.location.pathname)
 }
-
-useEffect(() => {
-    refresh()
-  },[])
- 
-  const logoutUser = () => {
+const logoutUser = () => {
     localStorage.clear();
     history.push('/signin');
   }
+useEffect(() => {
+    refresh()
+  },)
+ 
+
 
     return(
         <StyledHeader>
@@ -88,9 +88,13 @@ useEffect(() => {
             <StyledFull>
                 <div className='nav-links' onClick={refresh}>
                     {/* <Link to="/">Home</Link> */}
-                    <Link to="/signin">Sign In</Link>
+                    {/* <Link to="/signin">Sign In</Link> */}
                     {
                         currentURL === '/' && 
+                        <Link to='/signup'>Sign Up</Link>
+                    }
+                    {
+                        currentURL === '/private/pickup' && 
                         // <Link to='/private/user'>User Profile</Link>
                         <Link to='/private/user'>User Profile</Link>
                     }  
@@ -102,15 +106,15 @@ useEffect(() => {
                     {
                         currentURL === '/private/user' &&
                         // <Link  to='/'>Plant Dashboard</Link>
-                        <Link  to='/'>Pickup Board</Link>
+                        <Link  to='/private/pickup'>Pickup Board</Link>
                     }
                     {
                         currentURL === '/signup' &&
                         // <Link to ='/signin'>Sign In</Link>
                         <Link to ='/signin'>Sign In</Link>
                     }
+                     <button onClick={() => logoutUser()}>Logout</button>
                 </div>
-                <button onClick={() => logoutUser()}>Logout</button>
                 {/* <Link onClick={() => logout()}>Logout</Link> */}
 
             </StyledFull>
