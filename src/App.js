@@ -172,7 +172,7 @@ const App = () => {
         <div>
             <Header />
             <Switch>
-            {/* changed to route until we have endpoints */}
+            {/* changed to route until we have endpoints/ must also change path back to /private/user*/}
                 <Route exact path='/user' component={Profile}/> 
                 <PrivateRoute exact path='/private/pickup'>
                     <PickUp/>

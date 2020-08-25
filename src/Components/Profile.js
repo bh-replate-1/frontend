@@ -1,18 +1,24 @@
-import React, {useState} from 'react'
-import axiosWithAuth from '../Utils/axiosWithAuth'
+import React, { useState, useEffect } from 'react'
+import { fetchProfile, updateProfile } from '../Store/actions/replateActions'
+import { connect } from 'react-redux'
 
+//will need to change these to props
 const mockProfileData = {
     email: 'hernandezm.dev@gmail.com',
     business: 'Mikes food',
     address: '123 happy street',
     phone: '6096099696',
 }
-const Profile = () => {
+const Profile = (props) => {
     const [form, setForm] = useState(mockProfileData)
     const [disabled, setDisabled] = useState(true)
 
-    const inputChange = e =>{
-        const {name, value} = e.target;
+    useEffect(() => {
+        fetchProfile()
+    }, [])
+
+    const inputChange = e => {
+        const { name, value } = e.target;
 
         setForm({
             ...form,
@@ -21,15 +27,19 @@ const Profile = () => {
 
     }
 
-    const disableChange = e =>{
+    const disableChange = e => {
         e.preventDefault()
         setDisabled(!disabled)
     }
-    return(
+    const submit = e => {
+        e.preventDefault()
+        updateProfile(form)
+    }
+    return (
         <div>
             <form >
                 <label>email:
-                    <input 
+                    <input
                         // id=''
                         name='email'
                         type='email'
@@ -39,7 +49,7 @@ const Profile = () => {
                     />
                 </label>
                 <label>Business Name:
-                    <input 
+                    <input
                         // id=''
                         name='business'
                         type='text'
@@ -49,7 +59,7 @@ const Profile = () => {
                     />
                 </label>
                 <label>Address:
-                    <input 
+                    <input
                         // id=''
                         name='address'
                         type='text'
@@ -59,7 +69,7 @@ const Profile = () => {
                     />
                 </label>
                 <label>Phone Number:
-                    <input 
+                    <input
                         // id=''
                         name='phone'
                         type='text'
@@ -75,4 +85,15 @@ const Profile = () => {
     )
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+    return {
+        profile: {
+            email: state.profile.email,
+            business: state.profile.business,
+            address: state.profile.address,
+            phone: state.profile.phone,
+        }
+    }
+}
+
+export default connect(mapStateToProps, { updateProfile },{ fetchProfile })(Profile);
