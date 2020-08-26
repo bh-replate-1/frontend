@@ -198,7 +198,7 @@ const App = () => {
                 
                 <PrivateRoute exact path='/private/pickup'>
                     <PickUp />
-                    <SelectedPickups />
+                    {/* <SelectedPickups /> */}
                 </PrivateRoute>
 
                 <PrivateRoute exact path='/private/edit' component={EditPickUp} />

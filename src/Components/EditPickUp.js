@@ -2,24 +2,23 @@ import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import axiosWithAuth from '../Utils/axiosWithAuth'
 import {updatePickup} from '../Store/actions/'
-import {useParams} from 'react-router-dom'
+import { StyledButton, StyledInput, CenterDiv, FormStyle } from '../Utils/styles'
 
 const blankPickUp = {
-    company:'',
-	quantity: '',
-    use_by_date: '',
     food_item: '',
-	refrigerate: true,
-	completed: false
+    use_by_date: '',
+    quantity: 0,
+    refrigerate: true,
+    completed: false
 }
 
 const EditPickUp = (props) => {
     const [newPickup, setPickup] = useState(blankPickUp)
-    const {id} = useParams()
+    const id = localStorage.getItem('id')
 
     useEffect(() => {
         axiosWithAuth()
-          .get(`https://bh-replate-1.herokuapp.com/api/food/${id}`)
+          .put(`/api/food/${id}}`)
           .then((res) => {
             console.log(res, 'res in edit pickup')
             setPickup(res.data);
@@ -44,50 +43,44 @@ const EditPickUp = (props) => {
 
     return(
         <div>
-            Edit your PickUp
+            <CenterDiv>
+                <div>
+            <h3>Edit your PickUp</h3>
             <form onSubmit={onSubmit}>
-            <div>Name:
-                        <input
-                        type="text"
-                        name="name"
-                        value={newPickup.name}
-                        onChange={onChange}
-                        />
-                    </div>
-                    <div>Company:
-                        <input
+                    <div><FormStyle>Company:</FormStyle>
+                        <StyledInput
                         type="text"
                         name="company"
                         value={newPickup.company}
                         onChange={onChange}
                         />
                     </div>
-                    <div>Food Item:
-                        <input
+                    <div><FormStyle>Food Item:</FormStyle>
+                        <StyledInput
                         type="text"
                         name="food_item"
                         value={newPickup.food_item}
                         onChange={onChange}
                         />
                     </div>
-                    <div>Quantity:
-                        <input
+                    <div><FormStyle>Quantity:</FormStyle>
+                        <StyledInput
                         type="text"
                         name="quantity"
                         value={newPickup.quantity}
                         onChange={onChange}
                         />
                     </div>
-                    <div>Use by Date:
-                        <input
+                    <div><FormStyle>Use by Date:</FormStyle>
+                        <StyledInput
                         type="text"
                         name="use_by_date"
                         value={newPickup.use_by_date}
                         onChange={onChange}
                         />
                     </div>
-                    <div>Refrigerate:
-                        <input
+                    <div><FormStyle>Refrigerate:</FormStyle>
+                        <StyledInput
                         type="checkbox"
                         name="refrigerate"
                         value={newPickup.refrigerate}
@@ -96,9 +89,11 @@ const EditPickUp = (props) => {
                     </div>
 
                     <div>
-                        <button type='submit'>Update PickUp</button>
+                        <StyledButton type='submit'>Update PickUp</StyledButton>
                     </div>
                 </form>
+                </div>
+                </CenterDiv>
         </div>
     )
 }
