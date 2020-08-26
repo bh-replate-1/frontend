@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchPickup, addPickup } from '../Store/actions'
 import axiosWithAuth from '../Utils/axiosWithAuth'
+import { StyledButton, StyledInput, CenterDiv, FormStyle } from '../Utils/styles'
 
 const blankPickUp = {
     food_item: '',
@@ -11,31 +12,8 @@ const blankPickUp = {
 	completed: false
 }
 
-// "id": 2,
-// "food_item": "Lasagna",
-// "quantity": 1,
-// "use_by_date": "8/30/20",
-// "refrigerate": null,
-// "completed": null,
-// "user_id": 1
-
-
 
 const PickUp = (props) => {
-    // useEffect(() => {
-    //     console.log('in useEffect')
-    //     axiosWithAuth()
-    //     .get('/api/users')
-    //     .then(res => {
-    //         console.log(res.data)
-    //         console.log(res.data.company)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // },[])
-
-
     const [newPickUp, setPickUp] = useState(blankPickUp)
 
     const onChange = (event) => {
@@ -63,53 +41,60 @@ const PickUp = (props) => {
         })
 
     }, [])
+    console.log(props.food, 'props.food')
 
     return (
         <div>
-            {/* PickUp Page
+         <CenterDiv><h2>PickUp's</h2></CenterDiv>
+
+         <CenterDiv>
             <div>{props.isLoading ? (<h3>Loading PickUps. . .</h3>) : null}</div>
             <div>{props.error ? (<h3>Error! {props.error}</h3>) : null}</div>
-            <div>{props.pickup.map((item) => {
+            <div>{props.food[0] && props.food[0].foodItems.map((item) => {
                 return <div>
                     <h3>Pick Up:</h3>
-                    <p>Food Item: {props.food.food_item}</p>
-                    <p>Quantity: {props.food.quantity}</p>
-                    <p>Expiration: {props.food.use_by_date}</p>
-                    <div>{props.food.refrigerate ? (<p>Refridgeration Required</p>) : null}</div>
-                    <div>{props.food.completed ? (<p>Available</p>) : null}</div>
+                    <div>
+                    <p>Food Item: {item.food_item}</p>
+                    <p>Quantity: {item.quantity}</p>
+                    <p>Expiration: {item.use_by_date}</p>
+                    </div>
+                    <div>{item.refrigerate ? (<p>Refridgeration Required</p>) : null}</div>
+                    <div>{item.completed ? (<p>Available</p>) : null}</div>
                 </div>
             })}
             </div>
+            </CenterDiv>
 
+            <CenterDiv>
             <div>
-                Add a PickUp
+                <h3>Add a PickUp</h3>
                 <form onSubmit={onSubmit}>
-                    <div>Food Item:
-                        <input
+                    <div><FormStyle>Food Item:</FormStyle>
+                        <StyledInput
                         type="text"
                         name="food_item"
                         value={newPickUp.food_item}
                         onChange={onChange}
                         />
                     </div>
-                    <div>Quantity:
-                        <input
+                    <div><FormStyle>Quantity:</FormStyle>
+                        <StyledInput
                         type="text"
                         name="quantity"
                         value={newPickUp.quantity}
                         onChange={onChange}
                         />
                     </div>
-                    <div>Use by Date:
-                        <input
+                    <div><FormStyle>Use by Date:</FormStyle>
+                        <StyledInput
                         type="text"
                         name="use_by_date"
                         value={newPickUp.use_by_date}
                         onChange={onChange}
                         />
                     </div>
-                    <div>Refrigerate:
-                        <input
+                    <div><FormStyle>Refrigerate:</FormStyle>
+                        <StyledInput
                         type="checkbox"
                         name="refrigerate"
                         value={newPickUp.refrigerate}
@@ -118,11 +103,11 @@ const PickUp = (props) => {
                     </div>
 
                     <div>
-                        <button type='submit'>Submit PickUp</button>
+                        <StyledButton type='submit'>Add PickUp</StyledButton>
                     </div>
                 </form>
-            </div> */}
-              
+            </div>
+            </CenterDiv>
         </div>
     )
 }
@@ -131,7 +116,7 @@ const mapStateToProps = (state) => {
 
     console.log(state, 'state in mapfunction in PickUp.js')
     return {
-        pickup: state.pickup,
+        food: state.pickup,
         isLoading: state.isLoading,
         error: state.error
     }
