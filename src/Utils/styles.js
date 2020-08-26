@@ -13,6 +13,12 @@ margin:20px auto;
 width:200px;
 `
 
+export const FormStyle = styled.div`
+display:flex;
+justify-content:start;
+align-items:center;
+`
+
 export const StyledInput = styled.input`
 width:190px;`
 
