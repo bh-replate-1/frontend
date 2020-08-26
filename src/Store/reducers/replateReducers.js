@@ -3,7 +3,7 @@ import {FETCHING_PROFILE_START, FETCHING_PROFILE_SUCCESS, FETCHING_PROFILE_ERROR
 /* check to make sure data is array or object */
 
 const initialState = {
-    profile: {},
+    users: {},
     pickup: [],
     error: '',
     isLoading: false
@@ -20,7 +20,7 @@ const replateReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading:false,
-                profile: action.payload
+                users: action.payload
             }
         case FETCHING_PROFILE_ERROR:
             return {
@@ -31,12 +31,12 @@ const replateReducer = (state = initialState, action) => {
         case ADDING_PROFILE:
             return {
                 ...state,
-                profile: action.payload
+                users: action.payload
             }
         case UPDATE_PROFILE:
             return {
                 ...state,
-                profile: action.payload
+                users: action.payload
             }
         case FETCHING_PICKUP_START:
             return {

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext, createContext } from 'react'
 import { fetchProfile, updateProfile } from '../Store/actions/replateActions'
 import { connect } from 'react-redux'
 import { StyledButton, StyledInput, } from '../Utils/styles'
 import styled from 'styled-components'
-//will need to change these to props
+import axiosWithAuth from '../Utils/axiosWithAuth'
 
 const StyledForm = styled.form`
     display: flex;
@@ -40,7 +40,7 @@ const StyledLabel = styled.label`
 `
 const ButtonDiv = styled.div`
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 
     
 `
@@ -51,25 +51,35 @@ const StyledInputs = styled.div`
 
 
 `
-const mockProfileData = {
-    email: 'hernandezm.dev@gmail.com',
-    business: 'Mikes food',
-    address: '123 happy street',
-    phone: '6096099696',
-}
+
+
+
 const Profile = (props) => {
-    const [form, setForm] = useState(mockProfileData)
+    const id = localStorage.getItem('id')
+    const ProfileData = {
+        id: props.users.id,
+        name: props.users.name,
+        email: props.users.email,
+        company: props.users.company,
+        address: props.users.address,
+        phone: props.users.phone,
+    }
+    const profileData = props.users
+
+    const [userForm, setUserForm] = useState(ProfileData)
+    /* const [form, setForm] = useState('') */
     const [disabled, setDisabled] = useState(true)
 
     useEffect(() => {
-        fetchProfile()
-    }, [setForm])
+        console.log(id)
+        props.fetchProfile(id)
+    }, [])
 
     const inputChange = e => {
         const { name, value } = e.target;
 
-        setForm({
-            ...form,
+        setUserForm({
+            ...userForm,
             [name]: value
         })
 
@@ -81,73 +91,96 @@ const Profile = (props) => {
     }
     const submit = e => {
         e.preventDefault()
-        updateProfile(form)
+        // props.updateProfile(id, userForm)
+
+        axiosWithAuth()
+            .put(`/api/users/${id}`, userForm)
+            .then(res => {
+                console.log(res, 'res in update profile')
+                // dispatch({ type: UPDATE_PROFILE, payload: res.data })
+            })
+            .catch(error => {
+                console.log(error, 'this is the error')
+            })
+
     }
     return (
         <StyledDiv>
-            <StyledForm onClick={submit} type='submit'>
-            <StyledInputs>
-                <StyledLabel>email:
+            <StyledForm type='submit'>
+                <StyledInputs>
+                    <StyledLabel>Name:
                     <StyledInput
-                        // id=''
-                        name='email'
-                        type='email'
-                        onChange={inputChange}
-                        value={form.email}
-                        disabled={disabled}
-                    />
-                </StyledLabel>
-                <StyledLabel>Business Name:
+                            // id=''
+                            name='name'
+                            type='text'
+                            placeholder={props.users.name}
+                            onChange={inputChange}
+                            value={userForm.name}
+                            disabled={disabled}
+                        />
+                    </StyledLabel>
+                    <StyledLabel>email:
                     <StyledInput
-                        // id=''
-                        name='business'
-                        type='text'
-                        onChange={inputChange}
-                        value={form.business}
-                        disabled={disabled}
-                    />
-                </StyledLabel>
-                <StyledLabel>Address:
+                            // id=''
+                            name='email'
+                            type='email'
+                            onChange={inputChange}
+                            placeholder={props.users.email}
+                            value={props.users.email}
+                            disabled={disabled}
+                        />
+                    </StyledLabel>
+                    <StyledLabel>Business Name:
                     <StyledInput
-                        // id=''
-                        name='address'
-                        type='text'
-                        onChange={inputChange}
-                        value={form.address}
-                        disabled={disabled}
-                    />
-                </StyledLabel>
-                <StyledLabel>Phone Number:
+                            name='company'
+                            type='text'
+                            onChange={inputChange}
+                            placeholder={props.users.company}
+                            value={userForm.company}
+                            disabled={disabled}
+                        />
+                    </StyledLabel>
+                    <StyledLabel>Address:
                     <StyledInput
-                        // id=''
-                        name='phone'
-                        type='text'
-                        onChange={inputChange}
-                        value={form.phone}
-                        disabled={disabled}
-                    />
-                </StyledLabel>
+                            // id=''
+                            name='address'
+                            type='text'
+                            onChange={inputChange}
+                            placeholder={props.users.address}
+                            value={userForm.address}
+                            disabled={disabled}
+                        />
+                    </StyledLabel>
+                    <StyledLabel>Phone Number:
+                    <StyledInput
+                            // id=''
+                            name='phone'
+                            type='text'
+                            onChange={inputChange}
+                            placeholder={props.users.phone}
+                            value={userForm.phone}
+                            disabled={disabled}
+                        />
+                    </StyledLabel>
                 </StyledInputs>
                 <ButtonDiv>
                     <StyledButton onClick={disableChange}>Edit</StyledButton>
-                    <StyledButton>Submit</StyledButton>
+                    <StyledButton onClick={submit} >Submit</StyledButton>
                 </ButtonDiv>
-               
+
             </StyledForm>
         </StyledDiv>
     )
 }
-//disabled the state import until we have the proper data
-// const mapStateToProps = (state) => {
-//     return {
-//         profile: {
-//             email: state.profile.email,
-//             business: state.profile.business,
-//             address: state.profile.address,
-//             phone: state.profile.phone,
-//         }
-//     }
-// }
+const mapStateToProps = (state) => {
 
-// export default connect(mapStateToProps, { updateProfile },{ fetchProfile })(Profile);
-export default (Profile)
+    return {
+        users: state.users,
+    }
+}
+
+const mapDispatchToProps = {
+    fetchProfile,
+    updateProfile,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
