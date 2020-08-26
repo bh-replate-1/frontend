@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { Container, Form, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
@@ -6,7 +6,9 @@ import {StyledButton, CenterDiv} from '../Utils/styles'
 import {TweenMax, Power3} from 'gsap'
 
 
+
 function SignUp(props) {
+    
     let signUpForm = useRef(null)
 
     useEffect(() => {
@@ -17,7 +19,8 @@ function SignUp(props) {
           opacity: 1,
           y: -30,
           ease: Power3.easeOut
-        }
+        },
+   
       )
     
     }, [])
@@ -91,6 +94,10 @@ function SignUp(props) {
             <Link to='/signin'>Already have an acccount?</Link>
         </Form>
     </Container>
+    </CenterDiv>
+    <CenterDiv>
+        <h2>These companies and more use Replate daily!</h2>
+    
     </CenterDiv>
      
         </>
