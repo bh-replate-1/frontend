@@ -119,13 +119,13 @@ const PickUp = (props) => {
                 </form>
 
             </div> 
-              
-        <div>
+            </CenterDiv>
+
+            <CenterDiv>
+            <div>
             <h2>This company uses and trusts Replate everyday!</h2>
             <p>{company}, is amazing!</p>
         </div>
-
-            </div>
             </CenterDiv>
 
         </div>
