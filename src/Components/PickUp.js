@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchPickup, addPickup } from '../Store/actions'
 import axiosWithAuth from '../Utils/axiosWithAuth'
 import { StyledButton, StyledInput, CenterDiv, FormStyle } from '../Utils/styles'
+import {useParams} from 'react-router-dom'
 
 const blankPickUp = {
     food_item: '',
@@ -17,6 +18,7 @@ const blankPickUp = {
 
 const initialUsers = ''
 const PickUp = (props) => {
+    const {id} = useParams()
  
 
     const [company, setCompany] = useState(initialUsers)
@@ -42,16 +44,16 @@ const PickUp = (props) => {
         props.fetchPickup()
         console.log('in useEffect')
         axiosWithAuth()
-        .get('/api/users')
+        .get(`/api/users/18`)
         .then(res => {
-            console.log(res.data.users, "this is the list")
-            console.log(res.data.users[0].company, 'this is company data')
-            setCompany(res.data.users[0].company)
-            console.log(company, 'this is after it all')
+            console.log(res.data, "this is the list")
+            console.log(res.data.company, 'this is company data')
+            setCompany(...company, res.data.company)
             
         })
-
+        
     }, [])
+    console.log(company, 'this is after it all')
     console.log(props.food, 'props.food')
 
     return (
