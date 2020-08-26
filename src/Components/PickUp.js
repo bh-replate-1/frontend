@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchPickup, addPickup } from '../Store/actions'
+import axiosWithAuth from '../Utils/axiosWithAuth'
 
 const blankPickUp = {
     food_item: '',
@@ -19,7 +20,22 @@ const blankPickUp = {
 // "user_id": 1
 
 
+
 const PickUp = (props) => {
+    // useEffect(() => {
+    //     console.log('in useEffect')
+    //     axiosWithAuth()
+    //     .get('/api/users')
+    //     .then(res => {
+    //         console.log(res.data)
+    //         console.log(res.data.company)
+    //     })
+    //     .catch(err => {
+    //         console.log(err)
+    //     })
+    // },[])
+
+
     const [newPickUp, setPickUp] = useState(blankPickUp)
 
     const onChange = (event) => {
@@ -38,11 +54,19 @@ const PickUp = (props) => {
 
     useEffect(() => {
         props.fetchPickup()
-    }, [props])
+        console.log('in useEffect')
+        axiosWithAuth()
+        .get('/api/users')
+        .then(res => {
+            console.log(res.data)
+            console.log(res.data.company)
+        })
+
+    }, [])
 
     return (
         <div>
-            PickUp Page
+            {/* PickUp Page
             <div>{props.isLoading ? (<h3>Loading PickUps. . .</h3>) : null}</div>
             <div>{props.error ? (<h3>Error! {props.error}</h3>) : null}</div>
             <div>{props.pickup.map((item) => {
@@ -97,7 +121,7 @@ const PickUp = (props) => {
                         <button type='submit'>Submit PickUp</button>
                     </div>
                 </form>
-            </div>
+            </div> */}
               
         </div>
     )
