@@ -28,12 +28,7 @@ const SelectedPickups = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        profile: {
-            id: state.profile.id
-        },
         pickup: state.pickup
-
-
     }
 }
-export default connect(mapStateToProps, { fetchPickup },{updatePickup})(SelectedPickups);
+export default connect(mapStateToProps, {fetchPickup})(SelectedPickups);

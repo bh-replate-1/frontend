@@ -45,9 +45,9 @@ const PickUp = (props) => {
         .get('/api/users')
         .then(res => {
             console.log(res.data.users, "this is the list")
-            console.log(res.data.users[0].company, 'this is company data')
+            // console.log(res.data.users[0].company, 'this is company data')
             setCompany(res.data.users[0].company)
-            console.log(company, 'this is after it all')
+            // console.log(company, 'this is after it all')
             
         })
 
