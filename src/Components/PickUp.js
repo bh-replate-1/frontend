@@ -11,6 +11,7 @@ const blankPickUp = {
 	completed: false
 }
 
+
 // "id": 2,
 // "food_item": "Lasagna",
 // "quantity": 1,
@@ -20,22 +21,11 @@ const blankPickUp = {
 // "user_id": 1
 
 
-
+const initialUsers = []
 const PickUp = (props) => {
-    // useEffect(() => {
-    //     console.log('in useEffect')
-    //     axiosWithAuth()
-    //     .get('/api/users')
-    //     .then(res => {
-    //         console.log(res.data)
-    //         console.log(res.data.company)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // },[])
+ 
 
-
+    const [users, setUsers] = useState(initialUsers)
     const [newPickUp, setPickUp] = useState(blankPickUp)
 
     const onChange = (event) => {
@@ -58,8 +48,9 @@ const PickUp = (props) => {
         axiosWithAuth()
         .get('/api/users')
         .then(res => {
-            console.log(res.data)
-            console.log(res.data.company)
+            console.log(res.data.users[0].company, 'this is user data')
+            setUsers(res.data.users[0].company)
+            
         })
 
     }, [])
@@ -123,6 +114,10 @@ const PickUp = (props) => {
                 </form>
             </div> */}
               
+        <div>
+            <h2>This company uses and trusts Replate everyday!</h2>
+            <p>{users}</p>
+        </div>
         </div>
     )
 }
