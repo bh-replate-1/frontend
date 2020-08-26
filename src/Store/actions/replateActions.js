@@ -1,5 +1,4 @@
 import axiosWithAuth from '../../Utils/axiosWithAuth'
-import axios from 'axios'
 
 export const FETCHING_PROFILE_START = 'FETCHING_PROFILE_START'
 export const FETCHING_PROFILE_SUCCESS = 'FETCHING_PROFILE_SUCCESS'
@@ -17,11 +16,14 @@ export const UPDATE_PICKUP = 'UPDATE_PICKUP'
 
 /* check to make sure we need axios or axiosWithAuth */
 
+// login action
+
+
 /*profile actions*/
-export const fetchProfile = () => (dispatch) => {
+export const fetchProfile = (id) => (dispatch) => {
     dispatch({type: FETCHING_PROFILE_START})
     axiosWithAuth()
-    .get('/api/users/')
+    .get(`/api/users/${id}`)
     .then( res => {
         console.log(res, 'res in fetchprofile')
         dispatch({type: FETCHING_PROFILE_SUCCESS, payload: res.data})
@@ -44,10 +46,11 @@ export const addProfile = (value) => (dispatch) => {
     })
 }
 
-export const updateProfile = (changes) => (dispatch) => {
+export const updateProfile = (id, changes) => (dispatch) => {
+    debugger
     dispatch({type: UPDATE_PROFILE})
     axiosWithAuth()
-    .put('/api/users/', changes )
+    .put(`/api/users/${id}`, changes )
     .then (res => {
         console.log(res, 'res in update profile')
         dispatch({type: UPDATE_PROFILE, payload: res.data})

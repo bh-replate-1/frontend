@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import formSchemaIn from './formSchemaIn'
 import formSchemaUp from './formSchemaUp'
 import { BrowserRouter as Router } from 'react-router-dom'
-
 import * as yup from 'yup'
+import {fetchProfile} from './Store/actions/replateActions'
 
 import PrivateRoute from './Components/PrivateRoute'
 import Profile from './Components/Profile'
@@ -55,6 +55,7 @@ const initialDisabled = true
 
 
 const App = () => {
+
     const [signInForm, setSignInForm] = useState(initialSignIn)
     const [signUpForm, setSignUPForm] = useState(initialSignUp)
 
@@ -70,16 +71,16 @@ const App = () => {
     const [companies, SetCompanies] = useState([])
 
     const history = useHistory()
-
+    // let userId
     const postNewSignIn = newSignIn => {
         axiosWithAuth()
             .post('/api/auth/login', newSignIn)
             .then((res) => {
-                console.log(res.data.token)
-                console.log('test')
+                // console.log(res.data.id)
+                localStorage.setItem('id', res.data.id)
                 localStorage.setItem('token', res.data.token)
                 setSignInForm(initialSignUp)
-                history.push('/private/pickup')
+                history.push('/private/user') // changed to work on profile
                 
             })
             .catch((err) => {
@@ -191,11 +192,15 @@ const App = () => {
             <Header />
             <Switch>
                 {/* changed to route until we have endpoints/ must also change path back to /private/user*/}
-                <PrivateRoute exact path='/private/user' component={Profile} />
+                <PrivateRoute exact path='/private/user/'>
+                    <Profile />
+                </PrivateRoute>
+                
                 <PrivateRoute exact path='/private/pickup'>
                     <PickUp />
-                    {/* <SelectedPickups /> */}
+                    <SelectedPickups />
                 </PrivateRoute>
+
                 <PrivateRoute exact path='/private/edit' component={EditPickUp} />
                 <Route path='/signin'>
                     <SignIn
