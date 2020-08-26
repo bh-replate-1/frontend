@@ -21,11 +21,11 @@ const blankPickUp = {
 // "user_id": 1
 
 
-const initialUsers = []
+const initialUsers = ''
 const PickUp = (props) => {
  
 
-    const [users, setUsers] = useState(initialUsers)
+    const [company, setCompany] = useState(initialUsers)
     const [newPickUp, setPickUp] = useState(blankPickUp)
 
     const onChange = (event) => {
@@ -48,8 +48,10 @@ const PickUp = (props) => {
         axiosWithAuth()
         .get('/api/users')
         .then(res => {
-            console.log(res.data.users[0].company, 'this is user data')
-            setUsers(res.data.users[0].company)
+            console.log(res.data.users, "this is the list")
+            console.log(res.data.users[0].company, 'this is company data')
+            setCompany(res.data.users[0].company)
+            console.log(company, 'this is after it all')
             
         })
 
@@ -116,7 +118,7 @@ const PickUp = (props) => {
               
         <div>
             <h2>This company uses and trusts Replate everyday!</h2>
-            <p>{users}</p>
+            <p>{company}, is amazing!</p>
         </div>
         </div>
     )
