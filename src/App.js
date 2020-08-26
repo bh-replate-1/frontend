@@ -67,6 +67,8 @@ const App = () => {
     const [disabledIn, SetDisabledIn] = useState(initialDisabled)
     const [disabledUp, SetDisabledUp] = useState(initialDisabled)
 
+    const [companies, SetCompanies] = useState([])
+
     const history = useHistory()
 
     const postNewSignIn = newSignIn => {
@@ -103,6 +105,8 @@ const App = () => {
                 setFormErrorsUp(initialSignUpFormValues)
             })
     }
+
+  
 
     const inputChangeIn = (name, value) => {
         yup

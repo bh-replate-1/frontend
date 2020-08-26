@@ -3,6 +3,7 @@ import React from 'react'
 const PickupCard = (props) =>{
     const {pickupData, setPickups, allPickups} = props
 
+    
     const markComplete = e =>{
         e.preventDefault()
         setPickups(allPickups.map(pickup=> pickup.id === pickupData.id ? {...pickup, completed: !pickup.completed} : pickup))
@@ -16,6 +17,7 @@ const PickupCard = (props) =>{
             <p>{pickupData.company}</p>
             <button onClick={markComplete}>Toggle Completed</button>
         </div>
+       
     )
 }
 
