@@ -103,7 +103,7 @@ const PickUp = (props) => {
             <CenterDiv>
                 <div>
                     <h2>This company uses and trusts Replate everyday!</h2>
-                    <p>{company}, is amazing!</p>
+                    <h2>{company}</h2>
                 </div>
             </CenterDiv>
 

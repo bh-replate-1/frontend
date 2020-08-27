@@ -47,9 +47,9 @@ function SignUp(props) {
          <Form className='signup-form' onSubmit={onSubmit} ref={el => {signUpForm = el}}>
             <Form.Group>
                     <h2 className='text-center'>SIGN UP</h2>
-                    <div>{errorsUp.email}</div>
-                    <div>{errorsUp.phone}</div>
-                    <div>{errorsUp.password}</div>
+                    <div><h3>{errorsUp.email}</h3></div>
+                    <div><h3>{errorsUp.phone}</h3></div>
+                    <div><h3>{errorsUp.password}</h3></div>
             <Form.Label>Email:</Form.Label>
                     <br/>
                 <Form.Control
@@ -89,17 +89,13 @@ function SignUp(props) {
             </Form.Group>
                 <br/>
 
-            <StyledButton disabled={disabledUp} type="submit">Submit</StyledButton>
+            <StyledButton className="submitBtn" disabled={disabledUp} type="submit">Submit</StyledButton>
                 <br/>
             <Link to='/signin'>Already have an acccount?</Link>
         </Form>
     </Container>
     </CenterDiv>
-    <CenterDiv>
-        <h2>These companies and more use Replate daily!</h2>
-    
-    </CenterDiv>
-     
+   
         </>
     )
 }

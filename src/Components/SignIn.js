@@ -45,17 +45,17 @@ function SignIn(props) {
        
                 <Form.Group>
                        <h2>SIGN IN</h2>
-                    <div>{errorsIn.email}</div>
-                    <div>{errorsIn.password}</div>
+                    <div><h3>{errorsIn.email}</h3></div>
+                    <div><h3>{errorsIn.password}</h3></div>
                   <Form.Label>E-Mail:</Form.Label>
                        <br/>
-                    <Form.Control
+                    <Form.Control className="signin-email"
                         type="input"
                         value={valuesIn.email}
                         name="email"
                         placeholder="email"
                         onChange={onInputChange}
-                    ></Form.Control>
+                   />
                 </Form.Group>
               
                         <br/>
@@ -63,18 +63,18 @@ function SignIn(props) {
                 <Form.Group>
                   <Form.Label>Password:</Form.Label>
                         <br/>
-                    <Form.Control
-                        type="input"
+                    <Form.Control className="signin-password"
+                        type="password"
                         value={valuesIn.password}
                         name="password"
                         placeholder="password"
                         onChange={onInputChange}
-                    ></Form.Control>
+                    />
                 </Form.Group>
                         <br/>
-              <StyledButton  disabled={disabled} variant="primary" type="submit">Log In</StyledButton>
+              <StyledButton className="submitBtn" disabled={disabled} variant="primary" type="submit">Log In</StyledButton>
                         <br/>
-              <Link to="/signup">Need an account?</Link>
+              <Link className="signup-link" to="/signup">Need an account?</Link>
 
             </Form>
           </Container>

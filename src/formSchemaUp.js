@@ -7,11 +7,13 @@ const formSchemaUp = yup.object().shape({
     .required("Email is required to sign up."),
     phone: yup
     .string()
+    .min(11, "Phone needs to be in 15556661234 format.")
+    .max(11, "Phone needs to be in 15556661234 format.")
     .required("Phone Number is required to Sign up."),
     password: yup
     .string()
-    .min(8, "Password must be at least 8 characters.")
-    .max(20, "Password can not exceed 20 characters.")
+    .min(6, "Password must be at least 6 characters.")
+    .max(10, "Password can not exceed 10 characters.")
     .required('Password is required to Sign up.')
 
 })
