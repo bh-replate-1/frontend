@@ -68,7 +68,7 @@ export const fetchPickup = () => (dispatch) => {
     .get('/api/food/')
     .then( res => {
         console.log(res, 'res in fetchPickup')
-        dispatch({type: FETCHING_PICKUP_SUCCESS, payload: res.data})
+        dispatch({type: FETCHING_PICKUP_SUCCESS, payload: res.data[0].foodItems})
     })
     .catch( error => {
         console.log(error, 'this is the error')
@@ -76,7 +76,6 @@ export const fetchPickup = () => (dispatch) => {
 }
 
 export const addPickup = (value) => (dispatch) => {
-    dispatch({type: ADDING_PICKUP})
     axiosWithAuth()
     .post('/api/food/', value)
     .then (res => {
@@ -88,10 +87,10 @@ export const addPickup = (value) => (dispatch) => {
     })
 }
 
-export const updatePickup = (changes) => (dispatch) => {
+export const updatePickup = (changes, id) => (dispatch) => {
     dispatch({type: UPDATE_PICKUP})
     axiosWithAuth()
-    .put('/api/food/', changes )
+    .put(`/api/food/${id}`, changes )
     .then (res => {
         console.log(res, 'res in update Pickup')
         dispatch({type: UPDATE_PICKUP, payload: res.data})
