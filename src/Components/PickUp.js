@@ -31,10 +31,10 @@ const PickUp = (props) => {
     // const [filteredFoods, setFilteredFoods] = useState(props.pickup.filter(item => item.user_id === null))
     
     //state and function to force component refresh when event is triggered by buttons etc
-    const [refreshState, setRefreshState] = useState(true)
-    function refresh(){
-        setRefreshState(!refreshState)
-    }
+    // const [refreshState, setRefreshState] = useState(true)
+    // function refresh(){
+    //     setRefreshState(!refreshState)
+    // }
     const history = useHistory()
 
     const onChange = (event) => {
@@ -63,7 +63,7 @@ const PickUp = (props) => {
         console.log('new michael', props.pickup)
         // setFilteredFoods(props.pickup.filter(item => item.user_id === null))
         // console.log('Michael', filteredFoods)
-    },[refreshState])
+    },[]) //refreshState
 
     console.log(company, 'this is after it all')
     // console.log(props.food, 'props.food')
@@ -76,27 +76,27 @@ const PickUp = (props) => {
                 <div>{props.isLoading ? (<h3>Loading PickUps. . .</h3>) : null}</div>
                 <div>{props.error ? (<h3>Error! {props.error}</h3>) : null}</div>
 
-                <div>{props.pickup && props.pickup.filter(item => item.user_id === null).map((item) => {
-                    return <div>
-                        
-                    <PickUpDisplay food={item} update={update} setUpdate={setUpdate} updatePickup={props.updatePickup} refresh={refresh}/>
-                    </div>
-                })}
-                </div>
-
-                {/* <div>{props.pickup && props.pickup.map((item) => {
+                {/* <div>{props.pickup && props.pickup.filter(item => item.user_id === null).map((item) => {
                     return <div>
                         
                     <PickUpDisplay food={item} update={update} setUpdate={setUpdate} updatePickup={props.updatePickup} refresh={refresh}/>
                     </div>
                 })}
                 </div> */}
+
+                <div>{props.pickup && props.pickup.map((item) => {
+                    return <div>
+                        
+                    <PickUpDisplay food={item} update={update} setUpdate={setUpdate} updatePickup={props.updatePickup}/>
+                    </div>
+                })}
+                </div>
             </CenterDiv>
 
 
             <div>
                 <div>
-                    <AddPickUp update={update} setUpdate={setUpdate} refresh={refresh} />
+                    <AddPickUp update={update} setUpdate={setUpdate}  />
                     </div>
             </div>
 

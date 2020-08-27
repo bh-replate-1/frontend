@@ -49,7 +49,7 @@ const saveEdit = e => {
         console.log(res)
     })
     .catch((err) => console.log(err))
-    props.refresh()
+    // props.refresh()
 }
 
   const onChange = (event) => {

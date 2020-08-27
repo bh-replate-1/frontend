@@ -64,7 +64,7 @@ const replateReducer = (state = initialState, action) => {
         case UPDATE_PICKUP:
             return {
                 ...state,
-                pickup: [...state.pick, action.payload]
+                pickup: [...state.pickup, action.payload]
             }
         default: 
             return state

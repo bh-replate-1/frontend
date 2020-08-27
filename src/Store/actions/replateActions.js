@@ -68,8 +68,8 @@ export const fetchPickup = () => (dispatch) => {
     .get('/api/food/')
     .then( res => {
         console.log(res, 'res in fetchPickup')
-        const food = res.data.foodItems
-        dispatch({type: FETCHING_PICKUP_SUCCESS, payload: res.data.foodItems})
+        // const food = res.data.foodItems
+        dispatch({type: FETCHING_PICKUP_SUCCESS, payload: res.data[0].foodItems})
     })
     .catch( error => {
         console.log(error, 'this is the error')
