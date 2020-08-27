@@ -27,16 +27,17 @@ const AddPickUp = (props) => {
 
     const onSubmit = (event) => {
         event.preventDefault()
-        axiosWithAuth()
-            .post(`/api/users/${id}/food`, newPickup )
-            .then((res) => {
-                console.log(res, 'res in add pickup')
-                setPickup(res.data);
-            })
-            .catch((err) => console.error(err));
-       
+        props.addPickup(newPickup)
+     
+        
     }
 
+    // useEffect(() => {
+
+    // },[props.update])
+    // useEffect(() => {
+
+    // },[newPickup])
  
 
     return (

@@ -22,6 +22,7 @@ const EditPickUp = (props) => {
           .then((res) => {
             console.log(res, 'res in edit pickup')
             setPickup(res.data);
+            
           })
           .catch((err) => console.error(err));
       }, [id]);
@@ -38,7 +39,7 @@ const EditPickUp = (props) => {
 
     const onSubmit = (event) => {
         event.preventDefault()
-        props.updatePickup(newPickup)
+        props.setUpdate(!props.update)
     }
 
     return(
