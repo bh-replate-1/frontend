@@ -40,6 +40,17 @@ margin:10px auto;
 width:100px;
 `
 
+const StyledLink = styled.div`
+color: white;
+font-family: 'Heebo', sans-serif;
+background-color:#ff5e00;
+text-align:center;
+border:2px solid white;
+padding:10px;
+margin:10px auto;
+width:100px;
+`
+
 const StyledFull = styled.div`
     display: flex;
     justify-content:center;
@@ -115,7 +126,8 @@ useEffect(() => {
     return(
         <div>
              <Details>
-             <StyledButton onClick={() => logoutUser()}>Home</StyledButton>
+             {/* <StyledButton onClick={() => logoutUser()}>Home</StyledButton> */}
+             <StyledLink><a href='https://youthful-heyrovsky-5fcc57.netlify.app/'>Home</a></StyledLink>
              <ImageBorder src={replatelogo}></ImageBorder>
              <StyledButton onClick={() => logoutUser()}>Logout</StyledButton>
              </Details>
