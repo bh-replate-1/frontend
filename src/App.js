@@ -14,7 +14,7 @@ import EditPickUp from './Components/EditPickUp'
 import SelectedPickups from './Components/SelectedPickups'
 
 import { StyledFooter } from '../src/Utils/styles'
-
+import styled from 'styled-components'
 import SignIn from './Components/SignIn'
 import SignUp from './Components/SignUp'
 // import Home from './Home'
@@ -24,6 +24,12 @@ import Header from './Components/Header'
 import './App.css';
 import axiosWithAuth from './Utils/axiosWithAuth';
 import PickupCard from './Components/PickupCard';
+
+const StyledPickups = styled.div`
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+`
 
 const initialSignInFormValues = {
     email: '',
@@ -80,7 +86,7 @@ const App = () => {
                 localStorage.setItem('id', res.data.id)
                 localStorage.setItem('token', res.data.token)
                 setSignInForm(initialSignUp)
-                history.push('/private/user') // changed to work on profile
+                history.push('/private/pickup') // changed to work on profile
                 
             })
             .catch((err) => {
@@ -195,10 +201,12 @@ const App = () => {
                 <PrivateRoute exact path='/private/user/'>
                     <Profile />
                 </PrivateRoute>
-                
+
                 <PrivateRoute exact path='/private/pickup'>
-                    <PickUp />
-                    {/* <SelectedPickups /> */}
+                    <StyledPickups>
+                        <PickUp />
+                        <SelectedPickups />
+                    </StyledPickups>
                 </PrivateRoute>
 
                 <PrivateRoute exact path='/private/edit' component={EditPickUp} />
