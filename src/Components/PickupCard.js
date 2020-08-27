@@ -2,7 +2,7 @@ import React from 'react'
 import axiosWithAuth from '../Utils/axiosWithAuth'
 import { StyledButton, StyledInput, CenterDiv } from '../Utils/styles'
 import styled from 'styled-components'
-import {updatePickup, updateRefresh} from '../Store/actions/replateActions'
+import {updatePickup} from '../Store/actions/replateActions'
 import { connect } from 'react-redux'
 
 const StyledDiv = styled.div`
@@ -33,7 +33,7 @@ const PickupCard = (props) =>{
             user_id: item.user_id,
         }
         props.updatePickup(updatedItem, item.id)
-        props.updateRefresh(!props.refresh)
+        props.updateRefresh(props.refresh)
     }
 
     const removeItem = e =>{
@@ -48,6 +48,8 @@ const PickupCard = (props) =>{
             user_id: null,
         }
         props.updatePickup(updatedItem, item.id)
+        // props.updateRefresh(props.refresh)
+        props.updateRefresh(props.refresh)
         // axiosWithAuth()
         // .put(`/api/food/${item.id}`, updatedItem)
         // .then((res) =>{
@@ -75,12 +77,12 @@ const PickupCard = (props) =>{
 
 const mapStateToProps = (state) => {
     return {
-        // pickup: state.pickup,
-        // isLoading: state.isLoading,
-        // error: state.error,
+        pickup: state.pickup,
+        isLoading: state.isLoading,
+        error: state.error,
         refresh: state.refresh
         
     }
     }
 
-export default connect(mapStateToProps, {updatePickup, updateRefresh})(PickupCard);
+export default connect(mapStateToProps, {updatePickup})(PickupCard);

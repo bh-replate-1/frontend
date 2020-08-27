@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchPickup, updatePickup } from '../Store/actions'
+import { fetchPickup, updatePickup, updateRefresh } from '../Store/actions/replateActions'
 import { StyledButton, StyledInput, CenterDiv } from '../Utils/styles'
 import PickupCard from './PickupCard'
 import axiosWithAuth from '../Utils/axiosWithAuth'
@@ -37,6 +37,10 @@ const SelectedPickups = (props) => {
 
     const userId = localStorage.getItem('id')
     
+    useEffect(() =>{
+        fetchPickup()
+    })
+
     return (
 
         <StyledOuterDiv>
@@ -46,7 +50,7 @@ const SelectedPickups = (props) => {
             <StyledDiv>
                 {
                     props.pickup.filter(item => item.user_id == userId).map(item =>
-                        <PickupCard item={item}/>
+                        <PickupCard item={item} updateRefresh={updateRefresh}/>
                     )
                 }
             </StyledDiv>
@@ -61,10 +65,11 @@ const mapStateToProps = (state) => {
 return {
     pickup: state.pickup,
     isLoading: state.isLoading,
-    error: state.error
+    error: state.error,
+    refresh: state.refresh,
 }
 }
-export default connect(mapStateToProps, {fetchPickup})(SelectedPickups);
+export default connect(mapStateToProps, {fetchPickup, updateRefresh})(SelectedPickups);
 
 
 
