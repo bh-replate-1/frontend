@@ -133,7 +133,7 @@ const PickUp = (props) => {
                     </div>
                 })}
                 </div> */}
-                <div>{props.pickup && props.pickup.map((item) => {
+                <div>{props.pickup && props.pickup.filter(item => item.user_id === null).map((item) => {
                     return <TestDiv>
                         
                     <PickUpDisplay food={item} update={update} setUpdate={setUpdate} updatePickup={props.updatePickup}/>
