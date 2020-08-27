@@ -19,9 +19,12 @@ const {food_item, quantity, use_by_date, id} = props.food
 const [editing, setEditing] = useState(false)
 const [newPickup, setPickup] = useState(blankPickUp)
 const userId = localStorage.getItem('id')
+
 const saveEdit = e => {
     e.preventDefault();
     props.updatePickup(newPickup, id)
+    props.updateRefresh(props.refresh)
+    setEditing(!editing)
     // props.refresh()
     // axiosWithAuth()
     // .put(`/api/food/${id}`, newPickup)

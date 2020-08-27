@@ -90,7 +90,7 @@ export const addPickup = (value) => (dispatch) => {
 }
 
 export const updatePickup = (changes, id) => (dispatch) => {
-    dispatch({type: UPDATE_PICKUP})
+    // dispatch({type: UPDATE_PICKUP})
     axiosWithAuth()
     .put(`/api/food/${id}`, changes )
     .then (res => {
@@ -98,7 +98,7 @@ export const updatePickup = (changes, id) => (dispatch) => {
         dispatch({type: UPDATE_PICKUP, payload: res.data})
     })
     .catch (error => {
-        console.log(error, 'this is the error')
+        console.log(error, 'this is the error in updatePickup')
     })
 }
 

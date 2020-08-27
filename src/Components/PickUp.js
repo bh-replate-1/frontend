@@ -102,7 +102,7 @@ const PickUp = (props) => {
         props.fetchPickup()
         console.log(props.pickup, 'michael 3')
         axiosWithAuth()
-        .get(`/api/users/18`)
+        .get(`/api/users/`)
         .then(res => {
             console.log(res.data, "this is the list")
             console.log(res.data.company, 'this is company data')
@@ -128,12 +128,12 @@ const PickUp = (props) => {
 
                 {/* <div>{props.pickup && props.pickup.filter(item => item.user_id === null).map((item) => {
                     return <div>
-                        
-                    <PickUpDisplay food={item} update={update} setUpdate={setUpdate} updatePickup={props.updatePickup} refresh={refresh}/>
+                        {props.pickup && props.pickup.map((item) => {
+                    <PickUpDisplay food={item} />
                     </div>
                 })}
                 </div> */}
-                <div>{props.pickup && props.pickup.map((item) => {
+                <div>{props.pickup && props.pickup.filter(item => item.user_id === null).map((item) => {
                     return <TestDiv>
                         
                     <PickUpDisplay food={item} update={update} setUpdate={setUpdate} updatePickup={props.updatePickup}/>

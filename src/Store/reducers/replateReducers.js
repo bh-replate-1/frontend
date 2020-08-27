@@ -65,7 +65,7 @@ const replateReducer = (state = initialState, action) => {
         case UPDATE_PICKUP:
             return {
                 ...state,
-                pickup: [...state.pickup, action.payload]
+                pickup: state.pickup.map(item => item.id === action.payload.id ? action.payload : item)
             }
         case UPDATE_REFRESH:
             return{
