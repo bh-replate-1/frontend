@@ -1,54 +1,84 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchPickup, updatePickup } from '../Store/actions/replateActions'
+import { fetchPickup, updatePickup } from '../Store/actions'
 import { StyledButton, StyledInput, CenterDiv } from '../Utils/styles'
 import PickupCard from './PickupCard'
 import axiosWithAuth from '../Utils/axiosWithAuth'
 import styled from 'styled-components'
+import { Link, useHistory} from 'react-router-dom'
+
+const StyledOuterDiv = styled.div`
+    display:flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    /* justify-content:space-between; */
+    align-items:center;
+    /* text-align:center; */
+    background-color:white;
+    width:40%;
+    /* border:3px #ff5e00 solid; */
+
+`
 
 const StyledDiv = styled.div`
     display:flex;
     flex-wrap: wrap;
-    /* justify-content:center; */
+    justify-content:space-between;
     /* align-items:center; */
     text-align:center;
     background-color:white;
-    width:30%;
+    width:100%;
     border:3px #ff5e00 solid;
-    button{
-        width: 50%;
-    }
+    min-height: 200px;
+
 `
 
 const SelectedPickups = (props) => {
-    const id = localStorage.getItem('id')
+    const userId = localStorage.getItem('id')
+    const [refreshState, setRefreshState] = useState(true)
     const [myPickups, setMyPickups] = useState([])
 
+    function refresh(){
+        setRefreshState(!refreshState)
+}
 
-    useEffect(()=>{
+    useEffect(() => {
+        props.fetchPickup()
+        /* setMyPickups(props.pickup.filter(item => item.user_id == userId)) */
+        console.log(props.pickup)
         axiosWithAuth()
-        .get(`/api/food/`)
-        .then((res) =>{
-            // console.log(res.data.foodItems)
-            setMyPickups(res.data.foodItems.filter(item => item.user_id === null))// need to actually search for an id
-            // console.log(myPickups)
-        }, [])
-    })
- 
+            .get('/api/food/')
+            .then((res) => {
+                 console.log(userId)
+                setMyPickups(res.data.foodItems.filter(item => item.user_id == userId))
+            })
+    },[refreshState])
+
     return (
 
-        <StyledDiv>
-            
+        <StyledOuterDiv>
 
-            {
-                myPickups.map(item =>
-                    <PickupCard item={item}/>
-                )
-            }
-        </StyledDiv>
+            <CenterDiv><h2>Your Pickups</h2></CenterDiv>
+
+            <StyledDiv>
+                {
+                    myPickups.map(item =>
+                        <PickupCard item={item} refresh={refresh}/>
+                    )
+                }
+            </StyledDiv>
+        </StyledOuterDiv>
 
     )
 }
 
+/* <div>{props.isLoading ? (<h3>Loading PickUps. . .</h3>) : null}</div> */
+const mapStateToProps = (state) => {
+return {
+    pickup: state.pickup,
+    isLoading: state.isLoading,
+    error: state.error
+}
+}
 
-export default SelectedPickups;
+export default connect(mapStateToProps, {fetchPickup})(SelectedPickups);

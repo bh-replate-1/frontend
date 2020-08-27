@@ -28,6 +28,7 @@ const AddPickUp = (props) => {
     const onSubmit = (event) => {
         event.preventDefault()
         props.addPickup(newPickup)
+        // props.refresh()
      
         
     }

@@ -8,14 +8,14 @@ const StyledDiv = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     background-color:white;
-    width:100%;
-    border:3px #ff5e00 solid;
+    width:30%;
+    /* border:3px #ff5e00 solid; */
     padding:10px
 
-    
+
 `
 const PickupCard = (props) =>{
-    const {item, setPickups, allPickups} = props
+    const {item, setPickups, refresh} = props
 
     
     const markComplete = e =>{
@@ -38,6 +38,7 @@ const PickupCard = (props) =>{
             console.log(res)
         })
         .catch((err) => console.log(err))
+        refresh()
     }
 
     const removeItem = e =>{
@@ -56,6 +57,7 @@ const PickupCard = (props) =>{
             console.log(res)
         })
         .catch((err) => console.log(err))
+        refresh()
     }
     return(
         <StyledDiv className='pickup-card'>
@@ -63,12 +65,13 @@ const PickupCard = (props) =>{
             <p>Food Item: {item.food_item}</p>
             <p>Quantity: {item.quantity}</p>
             <p>Expiration: {item.use_by_date}</p>
+
             <div>{item.refrigerate ? (<p>Refridgeration Required</p>) : null}</div>
             <div>
             { item.completed ? 
-            (<button onClick={markComplete}>available</button>) : (<button onClick={markComplete}>Open</button>)}
+            (<StyledButton onClick={markComplete}>completed</StyledButton>) : (<StyledButton onClick={markComplete}>Active</StyledButton>)}
             </div>
-            <button onClick={removeItem}>remove</button>
+            <StyledButton onClick={removeItem}>remove</StyledButton>
         </StyledDiv>
        
     )
