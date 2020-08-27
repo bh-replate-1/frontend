@@ -34,26 +34,9 @@ const StyledDiv = styled.div`
 `
 
 const SelectedPickups = (props) => {
+
     const userId = localStorage.getItem('id')
-    const [refreshState, setRefreshState] = useState(true)
-    const [myPickups, setMyPickups] = useState([])
-
-    function refresh(){
-        setRefreshState(!refreshState)
-}
-
-    useEffect(() => {
-        props.fetchPickup()
-        /* setMyPickups(props.pickup.filter(item => item.user_id == userId)) */
-        console.log(props.pickup)
-        axiosWithAuth()
-            .get('/api/food/')
-            .then((res) => {
-                 console.log(userId)
-                setMyPickups(res.data.foodItems.filter(item => item.user_id == userId))
-            })
-    },[refreshState])
-
+    
     return (
 
         <StyledOuterDiv>
@@ -62,23 +45,45 @@ const SelectedPickups = (props) => {
 
             <StyledDiv>
                 {
-                    myPickups.map(item =>
-                        <PickupCard item={item} refresh={refresh}/>
+                    props.pickup.filter(item => item.user_id == userId).map(item =>
+                        <PickupCard item={item}/>
                     )
                 }
             </StyledDiv>
         </StyledOuterDiv>
 
     )
+
 }
 
-/* <div>{props.isLoading ? (<h3>Loading PickUps. . .</h3>) : null}</div> */
 const mapStateToProps = (state) => {
+
 return {
     pickup: state.pickup,
     isLoading: state.isLoading,
     error: state.error
 }
 }
-
 export default connect(mapStateToProps, {fetchPickup})(SelectedPickups);
+
+
+
+// const [refreshState, setRefreshState] = useState(true)
+    // const [myPickups, setMyPickups] = useState([])
+
+//     function refresh(){
+//         setRefreshState(!refreshState)
+// }
+
+
+// useEffect(() => {
+    //     props.fetchPickup()
+    //     /* setMyPickups(props.pickup.filter(item => item.user_id == userId)) */
+    //     console.log(props.pickup)
+    //     axiosWithAuth()
+    //         .get('/api/food/')
+    //         .then((res) => {
+    //              console.log(userId)
+    //             setMyPickups(res.data.foodItems.filter(item => item.user_id == userId))
+    //         })
+    // },[refreshState])

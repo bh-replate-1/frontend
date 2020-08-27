@@ -90,7 +90,6 @@ export const addPickup = (value) => (dispatch) => {
 }
 
 export const updatePickup = (changes, id) => (dispatch) => {
-    // dispatch({type: UPDATE_PICKUP})
     axiosWithAuth()
     .put(`/api/food/${id}`, changes )
     .then (res => {

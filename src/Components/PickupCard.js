@@ -2,6 +2,8 @@ import React from 'react'
 import axiosWithAuth from '../Utils/axiosWithAuth'
 import { StyledButton, StyledInput, CenterDiv } from '../Utils/styles'
 import styled from 'styled-components'
+import {updatePickup} from '../Store/actions/replateActions'
+import { connect } from 'react-redux'
 
 const StyledDiv = styled.div`
     display:flex;
@@ -15,13 +17,12 @@ const StyledDiv = styled.div`
 
 `
 const PickupCard = (props) =>{
-    const {item, setPickups, refresh} = props
+    const {item} = props
 
     
     const markComplete = e =>{
         
         const flip = item.completed
-        console.log(item.completed)
         e.preventDefault()
         const updatedItem ={
             id: item.id,
@@ -32,16 +33,11 @@ const PickupCard = (props) =>{
             completed: !flip,
             user_id: item.user_id,
         }
-        axiosWithAuth()
-        .put(`/api/food/${item.id}`, updatedItem)
-        .then((res) =>{
-            console.log(res)
-        })
-        .catch((err) => console.log(err))
-        refresh()
+        updatePickup(updatedItem, item.id)
     }
 
     const removeItem = e =>{
+        e.preventDefault()
         const updatedItem ={
             id: item.id,
             food_item: item.food_item,
@@ -51,13 +47,13 @@ const PickupCard = (props) =>{
             completed: item.completed,
             user_id: null,
         }
-        axiosWithAuth()
-        .put(`/api/food/${item.id}`, updatedItem)
-        .then((res) =>{
-            console.log(res)
-        })
-        .catch((err) => console.log(err))
-        refresh()
+        updatePickup(updatedItem, item.id)
+        // axiosWithAuth()
+        // .put(`/api/food/${item.id}`, updatedItem)
+        // .then((res) =>{
+        //     console.log(res)
+        // })
+        // .catch((err) => console.log(err))
     }
     return(
         <StyledDiv className='pickup-card'>
@@ -77,4 +73,4 @@ const PickupCard = (props) =>{
     )
 }
 
-export default PickupCard
+export default connect(null, {updatePickup})(PickupCard);
