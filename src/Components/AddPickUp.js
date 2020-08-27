@@ -24,7 +24,8 @@ const blankPickUp = {
     use_by_date: '',
     quantity: 0,
     refrigerate: true,
-    completed: false
+    completed: false,
+    user_id: null
 }
 
 const AddPickUp = (props) => {
@@ -43,6 +44,7 @@ const AddPickUp = (props) => {
     const onSubmit = (event) => {
         event.preventDefault()
         props.addPickup(newPickup)
+        console.log('clicking submit to add')
         // props.refresh()
      
         
