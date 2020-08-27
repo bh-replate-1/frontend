@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { StyledButton, StyledInput, CenterDiv, FormStyle } from '../Utils/styles'
+import { connect } from 'react-redux'
 import axiosWithAuth from '../Utils/axiosWithAuth'
+import {updateRefresh} from '../Store/actions/replateActions'
 import {useParams} from 'react-router-dom'
 
 const blankPickUp = {
@@ -49,6 +51,8 @@ const saveEdit = e => {
         console.log(res)
     })
     .catch((err) => console.log(err))
+    .finally(() =>{ console.log('FINALLY')
+    updateRefresh(props.refresh)})
     // props.refresh()
 }
 
@@ -120,4 +124,17 @@ const saveEdit = e => {
 } 
 
 
-export default PickUpDisplay;
+// export default PickUpDisplay;
+
+const mapStateToProps = (state) => {
+    return {
+        pickup: state.pickup,
+        // filtered: state.filtered,
+        isLoading: state.isLoading,
+        error: state.error,
+        refresh: state.refresh
+        
+    }
+    }
+    
+    export default connect(mapStateToProps, {updateRefresh})(PickUpDisplay);

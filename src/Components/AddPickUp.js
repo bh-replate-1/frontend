@@ -3,6 +3,21 @@ import { connect } from 'react-redux'
 import axiosWithAuth from '../Utils/axiosWithAuth'
 import { addPickup } from '../Store/actions'
 import { StyledButton, StyledInput, CenterDiv, FormStyle } from '../Utils/styles'
+import styled from 'styled-components'
+
+const StyledInnerDiv = styled.div`
+    display:flex;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    background-color:white;
+    width:100%;
+    border:3px #ff5e00 solid;
+    min-height: 200px;
+    margin-bottom: 2%;
+
+`
 
 const blankPickUp = {
     food_item: '',
@@ -42,8 +57,7 @@ const AddPickUp = (props) => {
  
 
     return (
-        <div>
-            <CenterDiv>
+            <StyledInnerDiv>
                 <div>
                     <h3>Add a PickUp</h3>
                     <form onSubmit={onSubmit}>
@@ -86,9 +100,7 @@ const AddPickUp = (props) => {
                     </form>
 
                 </div>
-            </CenterDiv>
-
-        </div>
+            </StyledInnerDiv>
     )
 }
 

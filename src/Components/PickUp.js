@@ -9,6 +9,7 @@ import EditPickUp from './EditPickUp'
 import AddPickUp from './AddPickUp'
 import { useHistory } from "react-router-dom";
 import {useParams} from 'react-router-dom'
+import styled from 'styled-components'
 
 
 const blankPickUp = {
@@ -19,6 +20,54 @@ const blankPickUp = {
     completed: false
 }
 
+const StyledDiv = styled.div`
+    display:flex;
+    flex-wrap: wrap;
+    text-align:center;
+    background-color:white;
+    width:100%;
+    border:3px #ff5e00 solid;
+    min-height: 200px;
+    margin-bottom: 2%;
+
+`
+const StyledOuterDiv = styled.div`
+    display:flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    /* justify-content:space-between; */
+    align-items:center;
+    /* text-align:center; */
+    background-color:white;
+    width:40%;
+    /* border:3px #ff5e00 solid; */
+
+`
+const StyledInnerDiv = styled.div`
+    display:flex;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    background-color:white;
+    width:100%;
+    border:3px #ff5e00 solid;
+    min-height: 200px;
+    margin-bottom: 2%;
+
+`
+const TestDiv = styled.div`
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    /* align-items:center; */
+    text-align:center;
+    background-color:white;
+    width:100%;
+    /* border:3px #ff5e00 solid; */
+    min-height: 200px;
+
+`
 
 const initialUsers = ''
 const PickUp = (props) => {
@@ -63,16 +112,17 @@ const PickUp = (props) => {
         console.log('new michael', props.pickup)
         // setFilteredFoods(props.pickup.filter(item => item.user_id === null))
         // console.log('Michael', filteredFoods)
-    },[]) //refreshState
+    },[props.refresh]) //refreshState
 
     console.log(company, 'this is after it all')
     // console.log(props.food, 'props.food')
 
     return (
-        <div>
+        <StyledOuterDiv>
             <CenterDiv><h2>PickUp's</h2></CenterDiv>
 
-            <CenterDiv>
+            <StyledDiv>
+                {console.log(props.pickup[0])}
                 <div>{props.isLoading ? (<h3>Loading PickUps. . .</h3>) : null}</div>
                 <div>{props.error ? (<h3>Error! {props.error}</h3>) : null}</div>
 
@@ -83,31 +133,24 @@ const PickUp = (props) => {
                     </div>
                 })}
                 </div> */}
-
                 <div>{props.pickup && props.pickup.map((item) => {
-                    return <div>
+                    return <TestDiv>
                         
                     <PickUpDisplay food={item} update={update} setUpdate={setUpdate} updatePickup={props.updatePickup}/>
-                    </div>
+                    </TestDiv>
                 })}
                 </div>
-            </CenterDiv>
+            </StyledDiv>
+
+            <AddPickUp update={update} setUpdate={setUpdate}  />
 
 
-            <div>
-                <div>
-                    <AddPickUp update={update} setUpdate={setUpdate}  />
-                    </div>
-            </div>
-
-            <CenterDiv>
-                <div>
+            <StyledInnerDiv>
                     <h2>This company uses and trusts Replate everyday!</h2>
                     <h2>{company}</h2>
-                </div>
-            </CenterDiv>
+            </StyledInnerDiv>
 
-        </div>
+        </StyledOuterDiv>
     )
 }
 
@@ -117,7 +160,8 @@ const mapStateToProps = (state) => {
     return {
         pickup: state.pickup,
         isLoading: state.isLoading,
-        error: state.error
+        error: state.error,
+        refresh: state.refresh
     }
 }
 
