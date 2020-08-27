@@ -47,15 +47,11 @@ const PickUp = (props) => {
         console.log('in useEffect')
         axiosWithAuth()
 
-        .get(`/api/users/18`)
+        .get(`/api/users/3`)
         .then(res => {
-            console.log(res.data, "this is the list")
-            console.log(res.data.company, 'this is company data')
-            setCompany(...company, res.data.company)
-            
+           setCompany(...company, res.data.company)
         })
-        
-    },[])
+            },[])
 
     console.log(company, 'this is after it all')
     console.log(props.food, 'props.food')
@@ -86,7 +82,7 @@ const PickUp = (props) => {
             <CenterDiv>
                 <div>
                     <h2>This company uses and trusts Replate everyday!</h2>
-                    <p>{company}, is amazing!</p>
+                    <h2>{company}</h2>
                 </div>
             </CenterDiv>
 
