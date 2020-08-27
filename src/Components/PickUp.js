@@ -122,6 +122,7 @@ const PickUp = (props) => {
             <CenterDiv><h2>PickUp's</h2></CenterDiv>
 
             <StyledDiv>
+                {console.log(props.pickup[0])}
                 <div>{props.isLoading ? (<h3>Loading PickUps. . .</h3>) : null}</div>
                 <div>{props.error ? (<h3>Error! {props.error}</h3>) : null}</div>
 
@@ -132,7 +133,6 @@ const PickUp = (props) => {
                     </div>
                 })}
                 </div> */}
-
                 <div>{props.pickup && props.pickup.map((item) => {
                     return <TestDiv>
                         
