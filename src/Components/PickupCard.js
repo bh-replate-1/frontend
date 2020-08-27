@@ -10,7 +10,7 @@ const StyledDiv = styled.div`
     background-color:white;
     width:30%;
     /* border:3px #ff5e00 solid; */
-    padding:10px
+    padding:10px;
 
 
 `

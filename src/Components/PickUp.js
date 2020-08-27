@@ -5,10 +5,8 @@ import axiosWithAuth from '../Utils/axiosWithAuth'
 import { StyledButton, StyledInput, CenterDiv, FormStyle } from '../Utils/styles'
 import PickUpDisplay from '../Components/PickUpDisplay'
 
-import EditPickUp from './EditPickUp'
 import AddPickUp from './AddPickUp'
 import { useHistory } from "react-router-dom";
-import {useParams} from 'react-router-dom'
 import styled from 'styled-components'
 
 

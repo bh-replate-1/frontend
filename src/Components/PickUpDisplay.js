@@ -20,20 +20,12 @@ const [editing, setEditing] = useState(false)
 const [newPickup, setPickup] = useState(blankPickUp)
 const userId = localStorage.getItem('id')
 
+
 const saveEdit = e => {
     e.preventDefault();
     props.updatePickup(newPickup, id)
     props.updateRefresh(props.refresh)
     setEditing(!editing)
-    // props.refresh()
-    // axiosWithAuth()
-    // .put(`/api/food/${id}`, newPickup)
-    // .then(res => {
-    //      props.setUpdate(!props.update)
-    // })
-    // .catch(error => {
-    //     console.log(error, 'this is the error')
-    // })
   };
 
   // Select Item functionality
@@ -132,7 +124,6 @@ const saveEdit = e => {
 const mapStateToProps = (state) => {
     return {
         pickup: state.pickup,
-        // filtered: state.filtered,
         isLoading: state.isLoading,
         error: state.error,
         refresh: state.refresh
