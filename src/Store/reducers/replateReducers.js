@@ -47,7 +47,7 @@ const replateReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                pickup: [...state.pickup, action.payload]
+                pickup: action.payload
             }
         case FETCHING_PICKUP_ERROR:
             return {
