@@ -5,8 +5,10 @@ import axiosWithAuth from '../Utils/axiosWithAuth'
 import { StyledButton, StyledInput, CenterDiv, FormStyle } from '../Utils/styles'
 import PickUpDisplay from '../Components/PickUpDisplay'
 
+import EditPickUp from './EditPickUp'
 import AddPickUp from './AddPickUp'
 import { useHistory } from "react-router-dom";
+import {useParams} from 'react-router-dom'
 import styled from 'styled-components'
 
 
@@ -126,12 +128,12 @@ const PickUp = (props) => {
 
                 {/* <div>{props.pickup && props.pickup.filter(item => item.user_id === null).map((item) => {
                     return <div>
-                        {props.pickup && props.pickup.map((item) => {
-                    <PickUpDisplay food={item} />
+                        
+                    <PickUpDisplay food={item} update={update} setUpdate={setUpdate} updatePickup={props.updatePickup} refresh={refresh}/>
                     </div>
                 })}
                 </div> */}
-                <div>{props.pickup && props.pickup.filter(item => item.user_id === null).map((item) => {
+                <div>{props.pickup && props.pickup.map((item) => {
                     return <TestDiv>
                         
                     <PickUpDisplay food={item} update={update} setUpdate={setUpdate} updatePickup={props.updatePickup}/>

@@ -37,15 +37,15 @@ const saveEdit = e => {
         completed: props.food.completed,
         user_id: userId,
     }
-    axiosWithAuth()
-    .put(`/api/food/${props.food.id}`, updatedItem)
-    .then((res) =>{
-        console.log(res)
-        window.location.reload(true)
-    })
-    .catch((err) => console.log(err))
+    // axiosWithAuth()
+    // .put(`/api/food/${props.food.id}`, updatedItem)
+    // .then((res) =>{
+    //     console.log(res)
+    //     // window.location.reload(true)
+    // })
+    // .catch((err) => console.log(err))
     // .finally(() =>{ console.log('FINALLY')
-    // updatePickup(updatedItem, props.food.id)
+    props.updatePickup(updatedItem, props.food.id)
     // updateRefresh(props.refresh)
 }
 
@@ -129,4 +129,4 @@ const mapStateToProps = (state) => {
     }
     }
     
-export default connect(mapStateToProps, {updateRefresh, updatePickup})(PickUpDisplay);
+export default connect(mapStateToProps, {updatePickup})(PickUpDisplay);
