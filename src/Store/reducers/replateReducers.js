@@ -56,6 +56,7 @@ const replateReducer = (state = initialState, action) => {
                 error: action.payload
             }
         case ADDING_PICKUP:
+            console.log(state.pickup, 'state.pickup in addpickup')
             return {
                 ...state,
                 pickup: [...state.pickup, action.payload]
