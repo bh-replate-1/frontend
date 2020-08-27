@@ -6,6 +6,7 @@ export const FETCHING_PROFILE_ERROR = 'FETCHING_PROFILE_ERROR'
 export const FETCHING_PICKUP_START = 'FETCHING_PICKUP_START'
 export const FETCHING_PICKUP_SUCCESS = 'FETCHING_PICKUP_SUCCESS'
 export const FETCHING_PICKUP_ERROR = 'FETCHING_PICKUP_ERROR'
+export const UPDATE_REFRESH = 'UPDATE_REFRESH'
 
 export const ADDING_PROFILE = 'ADDING_PROFILE'
 export const ADDING_PICKUP = 'ADDING_PICKUP'
@@ -99,6 +100,10 @@ export const updatePickup = (changes, id) => (dispatch) => {
     .catch (error => {
         console.log(error, 'this is the error')
     })
+}
+
+export const updateRefresh = (refresh) => (dispatch) =>{
+    dispatch({type: UPDATE_REFRESH, payload: refresh})
 }
 
 const thunk = (store) => (next) => (action) => {

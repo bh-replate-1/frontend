@@ -1,4 +1,4 @@
-import {FETCHING_PROFILE_START, FETCHING_PROFILE_SUCCESS, FETCHING_PROFILE_ERROR, FETCHING_PICKUP_START, FETCHING_PICKUP_SUCCESS, FETCHING_PICKUP_ERROR, ADDING_PROFILE, UPDATE_PROFILE, ADDING_PICKUP, UPDATE_PICKUP} from '../actions'
+import {UPDATE_REFRESH, FETCHING_PROFILE_START, FETCHING_PROFILE_SUCCESS, FETCHING_PROFILE_ERROR, FETCHING_PICKUP_START, FETCHING_PICKUP_SUCCESS, FETCHING_PICKUP_ERROR, ADDING_PROFILE, UPDATE_PROFILE, ADDING_PICKUP, UPDATE_PICKUP} from '../actions/replateActions'
 
 /* check to make sure data is array or object */
 
@@ -6,7 +6,8 @@ const initialState = {
     users: {},
     pickup: [],
     error: '',
-    isLoading: false
+    isLoading: false,
+    refresh: false,
 }
 
 const replateReducer = (state = initialState, action) => {
@@ -65,6 +66,11 @@ const replateReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pickup: [...state.pickup, action.payload]
+            }
+        case UPDATE_REFRESH:
+            return{
+                ...state,
+                refresh: !action.payload
             }
         default: 
             return state
