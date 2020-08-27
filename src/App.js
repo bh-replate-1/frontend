@@ -86,7 +86,7 @@ const App = () => {
                 localStorage.setItem('id', res.data.id)
                 localStorage.setItem('token', res.data.token)
                 setSignInForm(initialSignUp)
-                history.push('/private/user') // changed to work on profile
+                history.push('/private/pickup') // changed to work on profile
                 
             })
             .catch((err) => {
@@ -202,13 +202,12 @@ const App = () => {
                     <Profile />
                 </PrivateRoute>
 
-                <StyledPickups>
-                    <PrivateRoute exact path='/private/pickup'>
+                <PrivateRoute exact path='/private/pickup'>
+                    <StyledPickups>
                         <PickUp />
                         <SelectedPickups />
-                    </PrivateRoute>
-                </StyledPickups>
-               
+                    </StyledPickups>
+                </PrivateRoute>
 
                 <PrivateRoute exact path='/private/edit' component={EditPickUp} />
                 <Route path='/signin'>
