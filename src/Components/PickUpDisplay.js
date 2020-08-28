@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { StyledButton, StyledInput, CenterDiv, FormStyle } from '../Utils/styles'
 import { connect } from 'react-redux'
 import axiosWithAuth from '../Utils/axiosWithAuth'
-import {updateRefresh} from '../Store/actions/replateActions'
+import {updateRefresh, updatePickup} from '../Store/actions/replateActions'
 import {useParams} from 'react-router-dom'
 
 const blankPickUp = {
@@ -18,14 +18,12 @@ const PickUpDisplay = (props) => {
 const {food_item, quantity, use_by_date, id} = props.food
 const [editing, setEditing] = useState(false)
 const [newPickup, setPickup] = useState(blankPickUp)
+const [refresh, setRefresh] = useState(false)
+
 const userId = localStorage.getItem('id')
-
-
 const saveEdit = e => {
     e.preventDefault();
     props.updatePickup(newPickup, id)
-    props.updateRefresh(props.refresh)
-    setEditing(!editing)
   };
 
   // Select Item functionality
@@ -39,16 +37,16 @@ const saveEdit = e => {
         completed: props.food.completed,
         user_id: userId,
     }
-    console.log(props.food.id, 'michael 2')
-    axiosWithAuth()
-    .put(`/api/food/${props.food.id}`, updatedItem)
-    .then((res) =>{
-        console.log(res)
-    })
-    .catch((err) => console.log(err))
-    .finally(() =>{ console.log('FINALLY')
-    updateRefresh(props.refresh)})
-    // props.refresh()
+    // axiosWithAuth()
+    // .put(`/api/food/${props.food.id}`, updatedItem)
+    // .then((res) =>{
+    //     console.log(res)
+    //     // window.location.reload(true)
+    // })
+    // .catch((err) => console.log(err))
+    // .finally(() =>{ console.log('FINALLY')
+    props.updatePickup(updatedItem, props.food.id)
+    // updateRefresh(props.refresh)
 }
 
   const onChange = (event) => {
@@ -131,4 +129,4 @@ const mapStateToProps = (state) => {
     }
     }
     
-    export default connect(mapStateToProps, {updateRefresh})(PickUpDisplay);
+export default connect(mapStateToProps, {updatePickup})(PickUpDisplay);
